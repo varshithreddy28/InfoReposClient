@@ -10,3 +10,16 @@
     color: white;
     letter-spacing: 1px;
 }
+
+@media only screen and (max-width:400px) {
+    .btmnav {
+        font-size: 1.1em;
+        gap: 0;
+        letter-spacing: 0;
+        padding: 5% 0;
+    }
+
+    img#craftimg {
+        width: 28%;
+    }
+}

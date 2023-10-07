@@ -7,7 +7,7 @@ export default function Bottomnav() {
     <div>
       <div className="btmnav">
         <span id="craftedby">Crafted with ❤️ by </span>
-        <img src={InfoRepoLogo} alt="" />
+        <img id="craftimg" src={InfoRepoLogo} alt="" />
         <span id="craftedby">Developer</span>
       </div>
     </div>
