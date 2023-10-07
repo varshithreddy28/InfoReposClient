@@ -1,0 +1,12 @@
+.btmnav {
+    /* text-align: center; */
+    padding: 2% 0;
+    font-size: 1.25em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35em;
+    background-color: black;
+    color: white;
+    letter-spacing: 1px;
+}

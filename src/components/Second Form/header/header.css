@@ -1,0 +1,31 @@
+.formH {
+    margin-top: 4%;
+    font-size: 1.25em;
+    text-align: center;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.inpOneH {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5%;
+
+}
+
+label.dndt {
+    margin-right: 1em;
+}
+
+@media only screen and (max-width:500px) {
+    .inpOneH {
+        flex-direction: column;
+        gap: 1em;
+    }
+
+    .inpDate,
+    .inpTime {
+        width: 100%;
+    }
+}

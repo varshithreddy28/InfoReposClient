@@ -1,0 +1,103 @@
+/* .nameform {
+    padding: 0 14%;
+} */
+
+/* Normal state */
+input[type="text"] {
+    border: 2px solid #ccc;
+    padding: 10px;
+    transition: border-color 0.3s ease;
+}
+
+input[type="email"] {
+    border: 2px solid #ccc;
+    padding: 10px;
+    transition: border-color 0.3s ease;
+}
+
+/* Hover state */
+input[type="text"]:hover {
+    border-color: #888;
+}
+
+/* Focus state */
+input[type="text"]:focus {
+    border-color: #007bff;
+    /* Change to your desired focus color */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    /* Add a subtle box shadow on focus */
+}
+
+.nameformEle {
+    display: flex;
+    gap: 1.5em;
+    margin-top: 0.5em;
+
+}
+
+label.nameFormHeader {
+    font-size: 1.25em;
+    letter-spacing: 1px;
+    font-weight: 450;
+    margin-top: 2%;
+    margin-bottom: 1%;
+}
+
+.nameFormInp {
+    margin-top: 3%;
+}
+
+button.nameAdd {
+    border: none;
+    padding: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    background-color: burlywood;
+}
+
+li.nameformEle.nameformEleLi {
+    width: 100%;
+}
+
+.djf {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    font-size: 1.2em;
+    letter-spacing: 1px;
+}
+
+.nameEdit {
+    width: 18%;
+    display: flex;
+    justify-content: space-between;
+}
+
+span.indexName {
+    font-weight: 600;
+    margin-right: 2%;
+}
+
+ul {
+    padding: 0 0 0 2%;
+}
+
+@media only screen and (max-width:1020px) {
+    .nameEdit {
+        width: 32%;
+    }
+}
+
+@media only screen and (max-width:500px) {
+    .nameEdit {
+        width: 40%;
+    }
+}
+
+@media only screen and (max-width:400px) {
+    .nameEdit {
+        width: 50%;
+    }
+}

@@ -1,0 +1,41 @@
+.addBtnStaff {
+    /* float: right; */
+    margin-top: 0.5em;
+    display: flex;
+    justify-content: end;
+    margin-bottom: 0.5em;
+}
+
+button.nameAdd.addBtnStaff {
+    padding: 0.75em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25em;
+    font-size: 1em;
+    /* background: burlywood; */
+}
+
+span.indexName.staff {
+    height: 100%;
+}
+
+span.staffDetHeader {
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.djf.staff {
+    width: 90%;
+}
+
+.nameEdit.staffDetailsDel {
+    width: auto;
+    /* height: -webkit-fill-available; */
+    /* display: flex; */
+    align-items: end;
+}
+
+button.nameAdd.staffDetailsDel {
+    height: fit-content;
+}

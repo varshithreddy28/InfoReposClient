@@ -1,0 +1,31 @@
+input.number {
+    border: 2px solid #ccc;
+    padding: 10px;
+    transition: border-color 0.3s ease;
+}
+
+/* Hover state */
+input.number:hover {
+    border-color: #888;
+}
+
+/* Focus state */
+input.number:focus {
+    border-color: #007bff;
+    /* Change to your desired focus color */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    /* Add a subtle box shadow on focus */
+}
+
+/* Hover state */
+input[type="email"]:hover {
+    border-color: #888;
+}
+
+/* Focus state */
+input[type="email"]:focus {
+    border-color: #007bff;
+    /* Change to your desired focus color */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    /* Add a subtle box shadow on focus */
+}

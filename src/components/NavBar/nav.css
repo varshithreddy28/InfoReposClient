@@ -1,0 +1,41 @@
+.navBar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 1% 6%;
+    background-color: #1cabe2;
+    /* margin: 1% 0; */
+    align-items: center;
+}
+
+.imgs1 {
+    width: 26%;
+}
+
+.imgs2 {
+    width: 20%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+img.uniceflogo {
+    width: 100%;
+}
+
+img.telanganalogo {
+    width: 30%;
+}
+
+@media only screen and (max-width:500px) {
+    .imgs1 {
+        width: 50%;
+    }
+
+    .imgs2 {
+        width: 50%;
+    }
+
+    .formH {
+        font-size: 1.1em;
+    }
+}

@@ -1,0 +1,10 @@
+.inputfielddisrtict {
+    border: none;
+    border-bottom: 1px solid #000;
+    outline: none;
+    transition: border-bottom 0.3s ease;
+}
+
+.inputfielddisrtict:focus {
+    border-bottom: 2px solid #000;
+}

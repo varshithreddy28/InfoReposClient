@@ -1,0 +1,9 @@
+.genHeader {
+    font-size: 1.5em;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-decoration: underline;
+    /* margin-bottom: 0.5%; */
+    margin-top: 1.75%;
+    text-align: center;
+}

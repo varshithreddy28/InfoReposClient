@@ -1,0 +1,46 @@
+.checkHeader {
+    font-size: 1.25em;
+    letter-spacing: 1px;
+    font-weight: 450;
+    margin-top: 2%;
+    margin-bottom: 1%;
+}
+
+/*  */
+/* RadioButtonGroup.css */
+
+.radio-container {
+    display: flex;
+    flex-direction: column;
+    /* Default vertical alignment */
+}
+
+.horizontal {
+    flex-direction: row;
+    /* Horizontal alignment */
+}
+
+.radio-label-horizontal {
+    margin-right: 10px;
+    /* Spacing between horizontal radio buttons */
+}
+
+.radio-label-vertical {
+    margin-bottom: 10px;
+    /* Spacing between vertical radio buttons */
+}
+
+span.radioText {
+    margin-left: 1.25%;
+}
+
+label.radio-label-vertical {
+    display: flex;
+    align-items: center;
+}
+
+label.radio-label-horizontal {
+    display: flex;
+    gap: 0.25em;
+    align-items: center;
+}
