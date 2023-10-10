@@ -16,6 +16,7 @@ import Functionality from "../../components/Second Form/Functionality/functional
 import MultipleComponents from "../../components/Second Form/Multiple Components/multiple";
 import RecordFinancialComponents from "../../components/Second Form/Records Financial/recordfinancial";
 import Recomend from "../../components/Second Form/Recomendation/recomend";
+import Status from "../../components/Second Form/Status/Status";
 
 function SecondForm({ handleFormSuccess }) {
   let navigate = useNavigate();
@@ -39,6 +40,7 @@ function SecondForm({ handleFormSuccess }) {
   const [multipleContent, setmultipleContent] = useState({});
   const [record_financial_Content, set_record_financial_Content] = useState({});
   const [recommendContent, setRecommendContent] = useState({});
+  const [statusContent, setStatusContent] = useState({});
 
   const [show, setShow] = useState(true);
   const [alertMsg, setAlertmsg] = useState(null);
@@ -80,6 +82,7 @@ function SecondForm({ handleFormSuccess }) {
   useEffect(() => {
     setData({
       headerContent,
+      statusContent,
       legalContent,
       physicalInfraContent,
       managementContent,
@@ -90,6 +93,7 @@ function SecondForm({ handleFormSuccess }) {
     });
   }, [
     headerContent,
+    statusContent,
     legalContent,
     physicalInfraContent,
     managementContent,
@@ -142,6 +146,10 @@ function SecondForm({ handleFormSuccess }) {
     }
   };
 
+  const handleStatusContent = (content) => {
+    setStatusContent(content);
+  };
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     console.log(formErr);
@@ -160,6 +168,7 @@ function SecondForm({ handleFormSuccess }) {
           navigate("thankyou");
         } else setformErr(response.data.message);
       } catch (error) {
+        console.log(error);
         setShow(true);
         console.log("jghhjg");
         setformErr(error.response.data.message);
@@ -191,6 +200,7 @@ function SecondForm({ handleFormSuccess }) {
           draggable
           pauseOnHover
         />
+        <Status handleStatusContent={handleStatusContent} />
         <LegalStatus handleLegalContent={handleLegalContent} />
         <PhysicalInfra
           handlePhysicalInfraContent={handlephysicalInfraContent}

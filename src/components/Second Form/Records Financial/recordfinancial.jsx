@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import InputText from "../InputText/input";
 // import CheckBox from "../CheckBoxes/checkbox";
-import RadioButtonGroup from "../CheckBoxes/checkbox";
+import RadioButtonGroup from "../RadioBtn Text/checkbox";
 
 export default function RecordFinancialComponents({
   handleRecordFinancialContent,

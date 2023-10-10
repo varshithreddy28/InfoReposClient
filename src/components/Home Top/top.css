@@ -1,0 +1,30 @@
+.allimgs {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 2%;
+}
+
+.img1 {
+    width: 20%;
+}
+
+.img2 {
+    width: 60%;
+}
+
+.img3 {
+    width: 20%;
+}
+
+.img1 img {
+    width: 100%;
+}
+
+.img2 img {
+    width: 100%;
+}
+
+.img3 img {
+    width: 100%;
+}

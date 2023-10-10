@@ -5,7 +5,7 @@ import DatePickerComp from "../Date/date";
 import InputNumber from "../InputNumber/input";
 import InputEmail from "../InputEmail/input";
 // import CheckBox from "../CheckBoxes/checkbox";
-import RadioButtonGroup from "../CheckBoxes/checkbox";
+import RadioButtonGroup from "../RadioBtn Text/checkbox";
 
 import { useForm, FormProvider } from "react-hook-form";
 import DistrictInfoForm from "../FillinBlank/DistrictInfoForm";

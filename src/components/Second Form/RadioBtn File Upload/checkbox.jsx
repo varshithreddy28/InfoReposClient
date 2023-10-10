@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import "./checkbox.css"; // Import your custom CSS for styling
 import InputText from "../InputText/input";
 import InputTextNotReq from "../InputTextNotRequired/input";
+import axios from "axios";
+import Form from "react-bootstrap/Form";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function RadioButtonGroup({
   options,
@@ -20,6 +24,11 @@ function RadioButtonGroup({
   const [radioBtnInfo, setradioBtnInfo] = useState({});
   const [remark, setRemark] = useState("No");
   const [note, setNote] = useState("No");
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [fileUrl, setFileUrl] = useState(null);
+  const [uploading, setUploading] = useState(false);
+  const [uploaded, setUploaded] = useState(false);
+  const [uploadErr, setUploadErr] = useState(false);
 
   const containerClassName = horizontal
     ? "radio-container horizontal"
@@ -77,14 +86,57 @@ function RadioButtonGroup({
       remark,
       note,
     };
+
+    if (fileUrl && !showInputText) temp["fileUrl"] = fileUrl;
+
     if (!showInputText) temp["remark"] = null;
+
     // console.log(temp);
     updateRadioDetails({ ...temp });
-  }, [radioValue, remark, note]);
+  }, [radioValue, remark, note, fileUrl]);
 
   // useEffect(() => {
   //   console.log(radioBtnInfo);
   // }, [radioBtnInfo]);
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file && file.type === "application/pdf") {
+      // If the selected file is a PDF, set it in the state.
+      setSelectedFile(file);
+    } else {
+      // If the selected file is not a PDF, display an error message.
+      alert("Please select a PDF file.");
+    }
+  };
+
+  const handleUpload = async (e) => {
+    if (!selectedFile) {
+      alert("Please select a PDF file.");
+      return;
+    }
+    setUploading(true);
+    const formData = new FormData();
+    formData.append("file", selectedFile);
+    formData.append("upload_preset", "eyi4g20d");
+    formData.append("folder", "Registrations");
+
+    try {
+      const response = await axios.post(
+        "https://api.cloudinary.com/v1_1/dmumzo5xj/upload",
+        formData
+      );
+      const data = response.data;
+      setFileUrl(data.url);
+      setUploaded(true);
+      toast.success("Uploaded the File Successfully");
+      console.log("File uploaded:", data.url);
+    } catch (error) {
+      setUploading(false);
+      toast.error(error.message);
+      console.error("Error uploading file:", error);
+    }
+  };
 
   return (
     <div>
@@ -114,6 +166,47 @@ function RadioButtonGroup({
       {showInputText && <InputText {...inputDetails} />}
       {/* if yes or no what ever is the Option Selected */}
       {radioValue && <InputTextNotReq {...inputDetailsNote} />}
+
+      {radioValue == "Yes" ? (
+        <>
+          <div className="fileUpload">
+            <ToastContainer
+              position="top-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+            />
+            <Form.Label>Upload Registration File(only PDF)</Form.Label>
+            <div className="fileInline">
+              <Form.Control
+                required
+                accept=".pdf"
+                onChange={handleFileChange}
+                type="file"
+                className="fileInp"
+              />
+              <button
+                onClick={handleUpload}
+                type="button"
+                className="filebtnSub"
+              >
+                {uploading
+                  ? uploaded
+                    ? "Uploaded File"
+                    : "Uploading PDF"
+                  : "Upload PDF"}
+              </button>
+            </div>
+          </div>
+        </>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

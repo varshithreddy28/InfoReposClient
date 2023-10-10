@@ -2,12 +2,11 @@ import React, { useState, useEffect } from "react";
 import InputText from "../InputText/input";
 import "./legal.css";
 // import CheckBox from "../CheckBoxes/checkbox";
-import RadioButtonGroup from "../CheckBoxes/checkbox";
-
-import { useForm, FormProvider } from "react-hook-form";
+import RadioButtonGroup from "../RadioBtn File Upload/checkbox";
 
 export default function LegalStatus({ handleLegalContent }) {
   const [legallnformation, setLegalInformation] = useState({});
+  const [fileUrl, setFileUrl] = useState([]);
 
   const updateLegalDetails = (value, name) => {
     const oldInfo = JSON.parse(JSON.stringify(legallnformation));

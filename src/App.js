@@ -12,6 +12,9 @@ import ThankYouPage from "./Pages/Thankyou/thankyou";
 import Nav from "./components/NavBar/nav";
 import Bottomnav from "./components/BottomNav/bottomnav";
 import SecondForm from "./Pages/SecondForm/secondform";
+import SecondNav from "./components/SecondNav/nav";
+import Home from "./Pages/Home/home";
+import ScrollToTop from "./components/ScrolltoTop/ScrolltoTop";
 
 function App() {
   const handleFormSuccess = () => {
@@ -22,9 +25,12 @@ function App() {
     <div>
       <Router>
         <Nav />
+        <SecondNav />
+        <ScrollToTop />
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route
-            path="/"
+            path="firstform"
             element={<FirstForm handleFormSuccess={handleFormSuccess} />}
           />
           <Route path="secondform" element={<SecondForm />} />

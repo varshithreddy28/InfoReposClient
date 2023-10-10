@@ -8,6 +8,7 @@ import InputEmail from "../InputEmail/input";
 import RadioButtonGroup from "../CheckBoxes/checkbox";
 
 import { useForm, FormProvider } from "react-hook-form";
+import StateDistrictSelector from "../StateDistrict/stateDis";
 
 export default function Header({ handleHeaderContent }) {
   const [headerlnformation, setHeaderInformation] = useState({});
@@ -23,18 +24,6 @@ export default function Header({ handleHeaderContent }) {
   }, [headerlnformation]);
 
   const inputNames = [
-    {
-      name: "state",
-      placeholder: "Enter the State",
-      label: "State",
-      updateInputValue: updateHeaderDetails,
-    },
-    {
-      name: "district",
-      placeholder: "Enter the District",
-      label: "District",
-      updateInputValue: updateHeaderDetails,
-    },
     {
       name: "name_of_institution",
       placeholder: "Enter the Name of Institution",
@@ -112,6 +101,7 @@ export default function Header({ handleHeaderContent }) {
           INSTITUTION
         </div>
       </div>
+      <StateDistrictSelector updateHeaderDetails={updateHeaderDetails} />
       {inputNames.map((ele) => {
         return (
           <>
