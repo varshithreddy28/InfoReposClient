@@ -24,7 +24,6 @@ function App() {
   return (
     <div>
       <Router>
-        <Nav />
         <SecondNav />
         <ScrollToTop />
         <Routes>
@@ -37,6 +36,7 @@ function App() {
           <Route path="thankyou" element={<ThankYouPage />} />
           <Route path="secondform/thankyou" element={<ThankYouPage />} />
         </Routes>
+        {/* <Nav /> */}
         <Bottomnav />
       </Router>
     </div>
