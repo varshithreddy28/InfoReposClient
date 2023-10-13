@@ -1,4 +1,8 @@
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
+  from = “/api/*”
+  to = “https://inforeposerver.onrender.com/"
+  status = 200
+[[redirects]]
+  from = “/*”
+  to = “/index.html”
   status = 200
