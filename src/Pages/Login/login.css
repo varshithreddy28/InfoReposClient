@@ -36,3 +36,13 @@ button.loginbtn {
 button.loginbtn.login2 {
     width: 100%;
 }
+
+@media screen and (max-width:780px) {
+    .loginfrm {
+        width: 100%;
+    }
+
+    .hgdfv {
+        height: 100vh;
+    }
+}
