@@ -2,6 +2,7 @@
     display: flex;
     width: 100%;
     margin-top: 4%;
+    gap: 2em;
 }
 
 .fillDetails {
@@ -9,7 +10,7 @@
 }
 
 .whatsnew {
-    width: 50%;
+    width: 75%;
     text-align: center;
 }
 
@@ -30,4 +31,19 @@ button.service_btn {
 
 span.detailsfill {
     margin-left: 4%;
+}
+
+@media screen and (max-width:780px) {
+    .fillDetails {
+        width: 100%;
+    }
+
+    .whatsnew {
+        width: 100%;
+    }
+
+    .homecontent {
+        flex-direction: column;
+        gap: 2em;
+    }
 }

@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { SiReacthookform } from "react-icons/si";
 import { FaUserAlt } from "react-icons/fa";
+import { MdNewspaper } from "react-icons/md";
 
 import Accordion from "react-bootstrap/Accordion";
 import ListGroup from "react-bootstrap/ListGroup";
 import "./content.css";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import New from "../Whatsnew/new";
 
 export default function Content() {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [newcntVal, setnewcntVal] = useState();
   // const [userDetails, setUserDetails] = useState(null)
 
   const stateAll = useSelector((state) => state);
@@ -36,9 +39,24 @@ export default function Content() {
     },
   ];
 
+  const wtsnewHeaders = [
+    {
+      title: "Section 54",
+      value: "sec54",
+    },
+    {
+      title: "41. Inspection",
+      value: "inspec41",
+    },
+  ];
+
   useEffect(() => {
     if (stateAll.userSlice.user.name !== undefined) setLoggedIn(true);
   }, [stateAll.userSlice.user.name]);
+
+  const handleNewCnt = (value) => {
+    setnewcntVal(value);
+  };
 
   return (
     <div className="container">
@@ -64,6 +82,31 @@ export default function Content() {
                                   {detail.name}
                                 </button>
                               </Link>
+                            </ListGroup.Item>
+                          </>
+                        );
+                      })}
+                    </ListGroup>
+                  </Accordion.Body>
+                </Accordion.Item>
+                <Accordion.Item eventKey="1">
+                  <Accordion.Header>
+                    {" "}
+                    <MdNewspaper />
+                    <span className="detailsfill">What's New</span>
+                  </Accordion.Header>
+                  <Accordion.Body>
+                    <ListGroup>
+                      {wtsnewHeaders.map((detail) => {
+                        return (
+                          <>
+                            <ListGroup.Item>
+                              <button
+                                className="service_btn"
+                                onClick={() => handleNewCnt(detail.value)}
+                              >
+                                {detail.title}
+                              </button>
                             </ListGroup.Item>
                           </>
                         );
@@ -100,11 +143,39 @@ export default function Content() {
                     </ListGroup>
                   </Accordion.Body>
                 </Accordion.Item>
+                {/* Again */}
+                <Accordion.Item eventKey="1">
+                  <Accordion.Header>
+                    {" "}
+                    <MdNewspaper />
+                    <span className="detailsfill">What's New</span>
+                  </Accordion.Header>
+                  <Accordion.Body>
+                    <ListGroup>
+                      {wtsnewHeaders.map((detail) => {
+                        return (
+                          <>
+                            <ListGroup.Item>
+                              <button
+                                className="service_btn"
+                                onClick={() => handleNewCnt(detail.value)}
+                              >
+                                {detail.title}
+                              </button>
+                            </ListGroup.Item>
+                          </>
+                        );
+                      })}
+                    </ListGroup>
+                  </Accordion.Body>
+                </Accordion.Item>
               </Accordion>
             </div>
           )}
         </div>
-        <div className="whatsnew">Whats New</div>
+        <div className="whatsnew">
+          <New value={newcntVal} />
+        </div>
       </div>
     </div>
   );

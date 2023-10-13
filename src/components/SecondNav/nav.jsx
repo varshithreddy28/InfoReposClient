@@ -25,6 +25,8 @@ export default function SecondNav() {
   const handleLogOut = () => {
     dispatch(deleteUser());
     removeCookie("token");
+    removeCookie("tokenuser");
+
     navigate("/");
   };
 
@@ -47,7 +49,7 @@ export default function SecondNav() {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav>
-          <Nav.Link href="#home">Home</Nav.Link>
+          <Nav.Link onClick={() => handleAuth("/")}>Home</Nav.Link>
           <Nav.Link href="#about">About</Nav.Link>
           {stateAll.userSlice.user.name !== undefined ? (
             <Nav.Link onClick={handleLogOut}>Log Out</Nav.Link>

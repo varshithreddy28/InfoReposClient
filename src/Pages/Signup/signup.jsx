@@ -9,10 +9,11 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../../features/userFeature";
+import { useCookies } from "react-cookie";
+import LoadingSpinner from "../../components/LoadingSpinner/loading";
 
 function Signup() {
   let navigate = useNavigate();
-
   const dispatch = useDispatch();
 
   /**
@@ -28,6 +29,8 @@ function Signup() {
   const [district, setdistrictUser] = useState("");
   const [designation, setDesignation] = useState("");
   const [placeofwork, setplaceWork] = useState("");
+  const [cookies, setCookie] = useCookies([]);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,7 +45,7 @@ function Signup() {
         district,
         placeofwork,
       };
-      console.log(userDetails);
+      setLoading(true);
 
       const response = await axios.post(
         "https://inforeposerver.onrender.com/signup",
@@ -54,12 +57,15 @@ function Signup() {
         toast.success("Successfully Registred");
         navigate("/");
         const user = response.data.savedUser;
+        const token = response.data.token;
         dispatch(addUser(user));
+        setCookie("tokenuser", token);
       }
     } catch (error) {
       console.error(error);
       toast.error(error.response.data.message);
     }
+    setLoading(false);
   };
 
   const districts = [
@@ -126,7 +132,6 @@ function Signup() {
 
   return (
     <div className="container">
-      <h2 className="userauthlog">Signup</h2>
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -139,6 +144,8 @@ function Signup() {
         pauseOnHover
       />
       <form onSubmit={handleSubmit} className="userdetailsForm">
+        <h2 className="userauthlog">Signup</h2>
+
         <div className="signgrp">
           <div className="form-group">
             <label htmlFor="nameuser" className="nameFormHeader">
@@ -247,9 +254,16 @@ function Signup() {
           </div>
         </div>
         <div className="userSub">
-          <button type="submit" className="btn btn-success">
-            Register
-          </button>
+          {loading ? (
+            <div className="loadingUser">
+              {/* <div className="loadingtxt">Hang on</div> */}
+              <LoadingSpinner />
+            </div>
+          ) : (
+            <button type="submit" className="loginbtn">
+              Register
+            </button>
+          )}
         </div>
       </form>
     </div>

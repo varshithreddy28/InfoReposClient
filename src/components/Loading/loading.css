@@ -1,0 +1,44 @@
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dot {
+    width: 0.5em;
+    height: 0.5em;
+    background-color: #fff;
+    /* Change the color as needed */
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 5px;
+    animation: bounce 1.5s infinite;
+}
+
+.dot1 {
+    animation-delay: 0s;
+}
+
+.dot2 {
+    animation-delay: 0.3s;
+}
+
+.dot3 {
+    animation-delay: 0.6s;
+}
+
+.dot4 {
+    animation-delay: 0.9s;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}

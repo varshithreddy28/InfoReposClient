@@ -1,3 +1,38 @@
 .userauthlog {
     text-align: center;
+    margin-top: 3%;
+}
+
+.loadingUser {
+    width: fit-content;
+    display: flex;
+    background: #1cabe2;
+    padding: 10px 36px;
+    color: white;
+    border-radius: 8px;
+    justify-content: center;
+}
+
+button.loginbtn {
+    background-color: #1cabe2;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    font-size: 1.1em;
+    letter-spacing: 1.5px;
+}
+
+.loginfrm {
+    width: 40%;
+}
+
+.hgdfv {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button.loginbtn.login2 {
+    width: 100%;
 }

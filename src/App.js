@@ -44,7 +44,7 @@ function App() {
     }
 
     const verifyCookie = async () => {
-      const tokenCookie = cookies.token;
+      const tokenCookie = cookies.tokenuser;
       console.log("Token Cookie");
       if (tokenCookie)
         if (tokenCookie == "undefined") {
