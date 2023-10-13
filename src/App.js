@@ -46,22 +46,23 @@ function App() {
     const verifyCookie = async () => {
       const tokenCookie = cookies.token;
       console.log("Token Cookie");
-      if (tokenCookie == "undefined") {
-        console.log("jgfhfkgtug");
-        return 0;
-      } else {
-        console.log("Runninnnnnngg");
-        console.log(cookies.token);
-        const response = await axios.post(
-          "https://inforeposerver.onrender.com/validate",
-          {},
-          { withCredentials: true }
-        );
-        console.log(response.data.success);
-        if (response.data.success == true && response.status == 200) {
-          dispatch(addUser(response.data.foundUser));
+      if (tokenCookie)
+        if (tokenCookie == "undefined") {
+          console.log("jgfhfkgtug");
+          return 0;
+        } else {
+          console.log("Runninnnnnngg");
+          console.log(cookies.token);
+          const response = await axios.post(
+            "https://inforeposerver.onrender.com/validate",
+            {},
+            { withCredentials: true }
+          );
+          console.log(response.data.success);
+          if (response.data.success == true && response.status == 200) {
+            dispatch(addUser(response.data.foundUser));
+          }
         }
-      }
     };
 
     verifyCookie();
