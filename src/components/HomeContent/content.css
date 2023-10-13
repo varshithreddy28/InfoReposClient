@@ -27,3 +27,7 @@ button.service_btn {
 .accordion-body {
     padding: 0;
 }
+
+span.detailsfill {
+    margin-left: 4%;
+}

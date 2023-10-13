@@ -157,15 +157,15 @@ function SecondForm({ handleFormSuccess }) {
     setSubmiting(true);
     if (formErr === null)
       try {
-        const response = await axios({
-          method: "post",
-          url: "https://inforeposerver.onrender.com/addFormTwo",
-          data: data,
-        });
+        const response = await axios.post(
+          "https://inforeposerver.onrender.com/addFormTwo",
+          { ...data },
+          { withCredentials: true }
+        );
         setSubmiting(false);
         if (response.status === 200) {
           console.log("Submitted the Form");
-          navigate("thankyou");
+          // navigate("thankyou");
         } else setformErr(response.data.message);
       } catch (error) {
         console.log(error);

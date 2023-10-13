@@ -1,5 +1,6 @@
 import React from "react";
 import "./top.css";
+import telanganaLogo from "../../assests/TelanganaLogo.svg";
 
 export default function Top() {
   return (
@@ -19,11 +20,7 @@ export default function Top() {
           />
         </div>
         <div className="img3">
-          <img
-            src="https://res.cloudinary.com/dmumzo5xj/image/upload/v1696959935/Website/b1e8ckvhydqw3ff3sv6n.jpg"
-            alt=""
-            srcset=""
-          />
+          <img src={telanganaLogo} alt="" srcset="" />
         </div>
       </div>
     </div>
