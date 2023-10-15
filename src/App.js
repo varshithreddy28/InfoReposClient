@@ -39,33 +39,39 @@ function App() {
   };
 
   useEffect(() => {
-    if (!cookies.token) {
+    if (!cookies.tokenuser) {
       dispatch(addUser(undefined));
     }
-
-    const verifyCookie = async () => {
-      const tokenCookie = cookies.tokenuser;
-      console.log("Token Cookie");
-      if (tokenCookie)
-        if (tokenCookie == "undefined") {
-          console.log("jgfhfkgtug");
-          return 0;
-        } else {
-          console.log("Runninnnnnngg");
-          console.log(cookies.token);
-          const response = await axios.post(
-            "https://inforeposerver.onrender.com/validate",
-            {},
-            { withCredentials: true }
-          );
-          console.log(response.data.success);
-          if (response.data.success == true && response.status == 200) {
-            dispatch(addUser(response.data.foundUser));
+    try {
+      const verifyCookie = async () => {
+        const tokenCookie = cookies.tokenuser;
+        console.log("Token Cookie");
+        if (tokenCookie)
+          if (tokenCookie == "undefined") {
+            console.log("jgfhfkgtug");
+            return 0;
+          } else {
+            console.log("Runninnnnnngg");
+            const response = await axios.post(
+              // "https://inforeposerver.onrender.com/validate",
+              "http://localhost:3000/validate",
+              {},
+              { withCredentials: true }
+            );
+            if (response.data.success == true && response.status == 200) {
+              dispatch(addUser(response.data.foundUser));
+            } else if (
+              response.data.success == false &&
+              response.status == 401
+            ) {
+              console.log("User validation Failed");
+            }
           }
-        }
-    };
-
-    verifyCookie();
+      };
+      verifyCookie();
+    } catch (error) {
+      console.log("User Validation Failed");
+    }
   }, [cookies]);
 
   return (

@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../../features/userFeature";
 import { useCookies } from "react-cookie";
+import Cookies from "universal-cookie";
 import LoadingSpinner from "../../components/LoadingSpinner/loading";
 
 function Signup() {
@@ -45,7 +46,16 @@ function Signup() {
         navigate("/");
         const user = response.data.foundUser;
         const token = response.data.token;
-        setCookie("tokenuser", token);
+
+        const expirationDate = new Date();
+        expirationDate.setFullYear(expirationDate.getFullYear() + 1);
+        console.log(expirationDate);
+
+        setCookie("tokenuser", token, {
+          path: "/",
+          expires: expirationDate,
+        });
+
         dispatch(addUser(user));
       }
     } catch (error) {
