@@ -58,15 +58,7 @@ function Signup() {
         navigate("/");
         const user = response.data.savedUser;
         const token = response.data.token;
-
-        const expirationDate = new Date();
-        expirationDate.setFullYear(expirationDate.getFullYear() + 1);
-        console.log(expirationDate);
-
-        setCookie("tokenuser", token, {
-          path: "/",
-          expires: expirationDate,
-        });
+        localStorage.setItem('accessToken', token)
 
         dispatch(addUser(user));
       }

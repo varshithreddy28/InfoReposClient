@@ -27,6 +27,7 @@ import { useCookies } from "react-cookie";
 function App() {
   const dispatch = useDispatch();
   const [cookies, removeCookie] = useCookies([]);
+  const [error, setError] = useState(undefined);
   /**
    * dispatch(addUser(user))
    * stateAll = useSelector((state) => state);
@@ -42,46 +43,50 @@ function App() {
     if (!cookies.tokenuser) {
       dispatch(addUser(undefined));
     }
-    try {
-      const verifyCookie = async () => {
-        const tokenCookie = cookies.tokenuser;
-        console.log("Token Cookie");
-        console.log(tokenCookie);
-        if (tokenCookie)
-          if (tokenCookie == "undefined") {
-            console.log("jgfhfkgtug");
-            return 0;
-          } else {
-            console.log("Runninnnnnngg");
+
+    const verifyCookie = async () => {
+      const tokenCookie = localStorage.getItem("accessToken");
+
+      if (tokenCookie)
+        if (tokenCookie == "undefined") {
+          console.log("jgfhfkgtug");
+          return 0;
+        } else {
+          try {
             const response = await axios.post(
-              "https://inforeposerver.onrender.com/validate",
-              // "http://localhost:3000/validate",
+              // "https://inforeposerver.onrender.com/validate",
+              "http://localhost:3000/validate",
               {},
               {
                 withCredentials: true,
                 headers: {
-                  "content-Type": "application/json",
-                  Accept: "/",
-                  "Cache-Control": "no-cache",
-                  Cookie: tokenCookie,
+                  authorization: tokenCookie,
+                  "Content-Type": "application/json",
                 },
               }
             );
             if (response.data.success == true && response.status == 200) {
               dispatch(addUser(response.data.foundUser));
-            } else if (
-              response.data.success == false &&
-              response.status == 401
-            ) {
-              console.log("User validation Failed");
             }
+          } catch (error) {
+            console.log(error.response.status);
+            if (error.response.status == 401) {
+              setError("Session Expired - Login Again to Continue!");
+            } else setError(error.message);
           }
-      };
-      verifyCookie();
-    } catch (error) {
-      console.log("User Validation Failed");
-    }
+        }
+    };
+    verifyCookie();
   }, [cookies]);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setError(undefined);
+    }, 5000); // 5000 milliseconds = 5 seconds
+
+    // Clear the timeout when the component unmounts to prevent memory leaks
+    return () => clearTimeout(timeoutId);
+  }, [error]);
 
   return (
     <div>
@@ -89,7 +94,7 @@ function App() {
         <SecondNav />
         <ScrollToTop />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home error={error} />} />
           {stateAll.userSlice.user.name === undefined ? null : (
             <>
               <Route

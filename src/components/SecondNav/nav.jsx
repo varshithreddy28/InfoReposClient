@@ -26,7 +26,7 @@ export default function SecondNav() {
     dispatch(deleteUser());
     removeCookie("token");
     removeCookie("tokenuser");
-
+    localStorage.setItem('accessToken', "")
     navigate("/");
   };
 

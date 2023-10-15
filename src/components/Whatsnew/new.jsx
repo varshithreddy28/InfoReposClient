@@ -113,8 +113,6 @@ function New({ value }) {
     <div>
       <div className="newcnt">
         {dispCnt.map((temp) => {
-          console.log(temp);
-
           return (
             <>
               <div className="newheader">{temp.title}</div>

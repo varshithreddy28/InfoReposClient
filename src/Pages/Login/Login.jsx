@@ -36,7 +36,8 @@ function Signup() {
     setLoading(true);
     try {
       const response = await axios.post(
-        "https://inforeposerver.onrender.com/login",
+        // "https://inforeposerver.onrender.com/login",
+        "http://localhost:3000/login",
         { ...userDetails },
         { withCredentials: true }
       );
@@ -47,14 +48,7 @@ function Signup() {
         const user = response.data.foundUser;
         const token = response.data.token;
 
-        const expirationDate = new Date();
-        expirationDate.setFullYear(expirationDate.getFullYear() + 1);
-        console.log(expirationDate);
-
-        setCookie("tokenuser", token, {
-          path: "/",
-          expires: expirationDate,
-        });
+        localStorage.setItem('accessToken', token)
 
         dispatch(addUser(user));
       }
