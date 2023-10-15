@@ -57,7 +57,12 @@ function App() {
               "https://inforeposerver.onrender.com/validate",
               // "http://localhost:3000/validate",
               {},
-              { withCredentials: true }
+              {
+                withCredentials: true,
+                headers: {
+                  Cookie: tokenCookie,
+                },
+              }
             );
             if (response.data.success == true && response.status == 200) {
               dispatch(addUser(response.data.foundUser));
