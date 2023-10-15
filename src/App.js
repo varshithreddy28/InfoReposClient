@@ -60,6 +60,9 @@ function App() {
               {
                 withCredentials: true,
                 headers: {
+                  "content-Type": "application/json",
+                  Accept: "/",
+                  "Cache-Control": "no-cache",
                   Cookie: tokenCookie,
                 },
               }
