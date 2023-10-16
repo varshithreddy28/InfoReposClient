@@ -54,8 +54,8 @@ function App() {
         } else {
           try {
             const response = await axios.post(
-              // "https://inforeposerver.onrender.com/validate",
-              "http://localhost:3000/validate",
+              "https://inforeposerver.onrender.com/validate",
+              // "http://localhost:3000/validate",
               {},
               {
                 withCredentials: true,
