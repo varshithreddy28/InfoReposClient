@@ -11,10 +11,13 @@ import "react-toastify/dist/ReactToastify.css";
 import Header from "../header/header";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Accordion from "react-bootstrap/Accordion";
+
 
 import "./firstform.css";
 
 import { useNavigate } from "react-router-dom";
+import { Container } from "react-bootstrap";
 
 function FirstForm({ handleFormSuccess }) {
   let navigate = useNavigate();
@@ -332,13 +335,12 @@ function FirstForm({ handleFormSuccess }) {
 
     const contctValidation = {
       content: data.genContent.contactNo,
-      errmsg: "Enter a Valid Contact Number",
+      errmsg: "Enter a Valid Contact Number in General Information",
     };
     if (
       contctValidation.content.toString().length < 10 ||
       contctValidation.content.toString().length > 10
     ) {
-      console.log("jshghf");
       isformError = true;
       setformErr(contctValidation.errmsg);
     }
@@ -353,24 +355,34 @@ function FirstForm({ handleFormSuccess }) {
     }
   };
 
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    console.log("Submiting FORMJKJHBJ")
+    console.log(data)
+    const tokenCookie = localStorage.getItem("accessToken");
     const canSubmit = handleFormErrs();
     console.log(validData);
     setSubmiting(true);
 
     if (canSubmit === true) {
-      console.log("Submiting the Form");
+      //   console.log("Submiting the Form");
       try {
         const response = await axios({
           method: "post",
           url: "https://inforeposerver.onrender.com/addformOne",
+          // url: "http://localhost:3000/addformOne",
           data: data,
+          withCredentials: true,
+          headers: {
+            authorization: tokenCookie,
+            "Content-Type": "application/json",
+          },
+
         });
         setSubmiting(false);
         if (response.status === 200) {
           console.log("Submitted the Form");
-          navigate("thankyou");
+          // navigate("thankyou");
         } else setformErr(response.data.message);
       } catch (error) {
         setShow(true);
@@ -392,8 +404,7 @@ function FirstForm({ handleFormSuccess }) {
 
   return (
     <div className="App container">
-      <form onSubmit={handleFormSubmit}>
-        <Header handleHeaderContent={handleHeaderContent} />
+      <Accordion>
         <ToastContainer
           position="top-right"
           autoClose={5000}
@@ -405,18 +416,120 @@ function FirstForm({ handleFormSuccess }) {
           draggable
           pauseOnHover
         />
-        <General handleGeneralContent={handleGeneralContent} />
-        <Status handleStatusContent={handleStatusContent} />
-        <Infrastructure handleInfraContent={handleInfraContent} />
-        <Service handleServiceContent={handleServiceContent} />
-        <StaffForm handleStaffContent={handlestaffContent} />
-        <Committe handleCommitteContent={handleCommitteContent} />
-        <RecordMaintenance handleRecordContent={handleRecordContent} />
-        <Remarks handleRemarkContent={handleRemarkContent} />
+        <div className="formH">
+          <div className="formName">FORM 46</div>
+          <div className="rule">[Rule 41(3) and 41 (9)]</div>
+          <div className="inspectionBy">INSPECTION BY INSPECTION COMMITTEE</div>
+        </div>
+        <div className="accordation_cnt my-5">
+          <Accordion.Item eventKey="0">
+            <Accordion.Header>
+              {" "}
+              <span className="detailsfill">Inspection Information</span>
+            </Accordion.Header>
+            <Accordion.Body className="py-4">
+              <Container >
+                <Header handleHeaderContent={handleHeaderContent} />
+
+              </Container>
+            </Accordion.Body>
+          </Accordion.Item>
+          <Accordion.Item eventKey="1">
+            <Accordion.Header>
+              {" "}
+              <span className="detailsfill">General Information</span>
+            </Accordion.Header>
+            <Accordion.Body className="py-4">
+              <Container >
+                <General handleGeneralContent={handleGeneralContent} />
+              </Container>
+            </Accordion.Body>
+          </Accordion.Item>
+          <Accordion.Item eventKey="2">
+            <Accordion.Header>
+              {" "}
+              <span className="detailsfill">Status of Children</span>
+            </Accordion.Header>
+            <Accordion.Body className="py-4">
+              <Container >
+                <Status handleStatusContent={handleStatusContent} />
+              </Container>
+            </Accordion.Body>
+          </Accordion.Item>
+          <Accordion.Item eventKey="3">
+            <Accordion.Header>
+              {" "}
+              <span className="detailsfill">Infrastructure</span>
+            </Accordion.Header>
+            <Accordion.Body className="py-4">
+              <Container >
+                <Infrastructure handleInfraContent={handleInfraContent} />
+              </Container>
+            </Accordion.Body>
+          </Accordion.Item>
+          <Accordion.Item eventKey="4">
+            <Accordion.Header>
+              {" "}
+              <span className="detailsfill">Services provided to the children</span>
+            </Accordion.Header>
+            <Accordion.Body className="py-4">
+              <Container >
+                <Service handleServiceContent={handleServiceContent} />
+              </Container>
+            </Accordion.Body>
+          </Accordion.Item>
+          <Accordion.Item eventKey="5">
+            <Accordion.Header>
+              {" "}
+              <span className="detailsfill">Staff Details</span>
+            </Accordion.Header>
+            <Accordion.Body className="py-4">
+              <Container >
+                <StaffForm handleStaffContent={handlestaffContent} />
+              </Container>
+            </Accordion.Body>
+          </Accordion.Item>
+          <Accordion.Item eventKey="6">
+            <Accordion.Header>
+              {" "}
+              <span className="detailsfill">Children’s Committee / Management Committee</span>
+            </Accordion.Header>
+            <Accordion.Body className="py-4">
+              <Container >
+                <Committe handleCommitteContent={handleCommitteContent} />
+              </Container>
+            </Accordion.Body>
+          </Accordion.Item>
+          <Accordion.Item eventKey="7">
+            <Accordion.Header>
+              {" "}
+              <span className="detailsfill">Record Maintenance</span>
+            </Accordion.Header>
+            <Accordion.Body className="py-4">
+              <Container >
+                <RecordMaintenance handleRecordContent={handleRecordContent} />
+
+              </Container>
+            </Accordion.Body>
+          </Accordion.Item>
+          <Accordion.Item eventKey="8">
+            <Accordion.Header>
+              {" "}
+              <span className="detailsfill">Observations/ Remarks</span>
+            </Accordion.Header>
+            <Accordion.Body className="py-4">
+              <Container >
+                <Remarks handleRemarkContent={handleRemarkContent} />
+
+              </Container>
+            </Accordion.Body>
+          </Accordion.Item>
+        </div>
+
         {/* <Submit data={data} /> */}
 
         <div className="formSubmitBtn">
-          <button type="submit" id="btnsbmit">
+          <button type="button" id="btnsbmit" onClick={handleFormSubmit}>
             {validData
               ? submiting
                 ? "Submiting the  Inspection Report Please Wait!!!"
@@ -424,7 +537,8 @@ function FirstForm({ handleFormSuccess }) {
               : "Submit Inspection Report"}
           </button>
         </div>
-      </form>
+      </Accordion>
+
     </div>
   );
 }

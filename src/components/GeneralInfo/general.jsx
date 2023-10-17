@@ -5,18 +5,22 @@ import DatePickerComp from "../Date/date";
 import InputNumber from "../InputNumber/input";
 import InputEmail from "../InputEmail/input";
 // import CheckBox from "../CheckBoxes/checkbox";
-import RadioButtonGroup from "../CheckBoxes/checkbox";
+// import RadioButtonGroup from "../CheckBoxes/checkbox";
+import RadioButtonGroup from "../RadioBtn Text/checkbox";
 
 import { useForm, FormProvider } from "react-hook-form";
 
 export default function General({ handleGeneralContent }) {
   const [generallnformation, setGeneralInformation] = useState({});
+  const [saveBtn, setsaveBtn] = useState("Save Data")
   const methods = useForm();
 
   const updateOrgDetails = (value, name) => {
     const oldInfo = JSON.parse(JSON.stringify(generallnformation));
     oldInfo[name] = value;
     setGeneralInformation(oldInfo);
+    setsaveBtn("Save Data")
+
   };
 
   const dateNames = [
@@ -133,76 +137,89 @@ export default function General({ handleGeneralContent }) {
     },
   ];
 
+  const handleLocalSubmit = (e) => {
+    e.preventDefault()
+    setsaveBtn("Data Saved")
+  }
+
   return (
     <div id="generalInfo">
       <div className="genHeader">General Information</div>
-      {inputNames.map((ele) => {
-        return (
-          <>
-            <InputText {...ele} />
-          </>
-        );
-      })}
-      <div className="genDate">
-        {dateNames.map((ele) => {
+      <form onSubmit={handleLocalSubmit}>
+
+        {inputNames.map((ele) => {
           return (
             <>
-              <DatePickerComp {...ele} />
+              <InputText {...ele} />
             </>
           );
         })}
-      </div>
+        <div className="genDate">
+          {dateNames.map((ele) => {
+            return (
+              <>
+                <DatePickerComp {...ele} />
+              </>
+            );
+          })}
+        </div>
 
-      {inputNames2.map((ele) => {
-        return (
-          <>
-            <InputText {...ele} />
-          </>
-        );
-      })}
+        {inputNames2.map((ele) => {
+          return (
+            <>
+              <InputText {...ele} />
+            </>
+          );
+        })}
 
-      {inputNumber.map((ele) => {
-        return (
-          <>
-            <InputNumber {...ele} />
-          </>
-        );
-      })}
+        {inputNumber.map((ele) => {
+          return (
+            <>
+              <InputNumber {...ele} />
+            </>
+          );
+        })}
 
-      {inputEmail.map((ele) => {
-        return (
-          <>
-            <InputEmail {...ele} />
-          </>
-        );
-      })}
+        {inputEmail.map((ele) => {
+          return (
+            <>
+              <InputEmail {...ele} />
+            </>
+          );
+        })}
 
-      {radioInputs.map((radio, index) => {
-        return (
-          <>
-            <RadioButtonGroup
-              options={radio.options}
-              selectedOption={radio.selectedOption}
-              onChange={radio.onChange}
-              title={radio.title}
-              horizontal={radio.horizontal}
-              updateInfo={radio.updateInfo}
-              radioInpDetails={radio.radioInpDetails}
-              otherValue={radio.otherValue}
-              index={index}
-              label={radio.label}
-            />
-          </>
-        );
-      })}
+        {radioInputs.map((radio, index) => {
+          return (
+            <>
+              <RadioButtonGroup
+                options={radio.options}
+                selectedOption={radio.selectedOption}
+                onChange={radio.onChange}
+                title={radio.title}
+                horizontal={radio.horizontal}
+                updateInfo={radio.updateInfo}
+                radioInpDetails={radio.radioInpDetails}
+                otherValue={radio.otherValue}
+                index={index}
+                label={radio.label}
+              />
+            </>
+          );
+        })}
 
-      {inputNames3.map((ele) => {
-        return (
-          <>
-            <InputText {...ele} />
-          </>
-        );
-      })}
+        {inputNames3.map((ele) => {
+          return (
+            <>
+              <InputText {...ele} />
+            </>
+          );
+        })}
+        <div className="formDataSub my-4">
+
+          <button type="submit" >{saveBtn}</button>
+        </div>
+
+      </form>
     </div>
   );
 }

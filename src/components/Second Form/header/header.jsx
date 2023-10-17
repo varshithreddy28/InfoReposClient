@@ -12,11 +12,15 @@ import StateDistrictSelector from "../StateDistrict/stateDis";
 
 export default function Header({ handleHeaderContent }) {
   const [headerlnformation, setHeaderInformation] = useState({});
+  const [saveBtn, setsaveBtn] = useState("Save Data")
+
 
   const updateHeaderDetails = (value, name) => {
     const oldInfo = JSON.parse(JSON.stringify(headerlnformation));
     oldInfo[name] = value;
     setHeaderInformation(oldInfo);
+    setsaveBtn("Save Data")
+
   };
 
   useEffect(() => {
@@ -91,51 +95,65 @@ export default function Header({ handleHeaderContent }) {
     },
   ];
 
+  const handleLocalSubmit = (e) => {
+    e.preventDefault()
+    setsaveBtn("Data Saved")
+  }
+
+
   return (
     <div id="generalInfo">
-      <div className="formH">
+      {/* <div className="formH">
         <div className="formName">FORM 46A</div>
         <div className="rule">[Rule 21(3) and Rule 21(15)]</div>
         <div className="inspectionBy">
           INSPECTION FORMAT FOR REGISTERATION AND RENEWAL OF A CHILD CARE
           INSTITUTION
         </div>
-      </div>
-      <StateDistrictSelector updateHeaderDetails={updateHeaderDetails} />
-      {inputNames.map((ele) => {
-        return (
-          <>
-            <InputText {...ele} />
-          </>
-        );
-      })}
+      </div> */}
+      <form onSubmit={handleLocalSubmit}>
 
-      {radioInputs.map((radio, index) => {
-        return (
-          <>
-            <RadioButtonGroup
-              options={radio.options}
-              selectedOption={radio.selectedOption}
-              onChange={radio.onChange}
-              title={radio.title}
-              horizontal={radio.horizontal}
-              updateInfo={radio.updateInfo}
-              radioInpDetails={radio.radioInpDetails}
-              otherValue={radio.otherValue}
-              index={index}
-              label={radio.label}
-            />
-          </>
-        );
-      })}
+        <StateDistrictSelector updateHeaderDetails={updateHeaderDetails} />
+        {inputNames.map((ele) => {
+          return (
+            <>
+              <InputText {...ele} />
+            </>
+          );
+        })}
 
-      {inputNames2.map((ele) => {
-        return (
-          <>
-            <InputText {...ele} />
-          </>
-        );
-      })}
+        {radioInputs.map((radio, index) => {
+          return (
+            <>
+              <RadioButtonGroup
+                options={radio.options}
+                selectedOption={radio.selectedOption}
+                onChange={radio.onChange}
+                title={radio.title}
+                horizontal={radio.horizontal}
+                updateInfo={radio.updateInfo}
+                radioInpDetails={radio.radioInpDetails}
+                otherValue={radio.otherValue}
+                index={index}
+                label={radio.label}
+              />
+            </>
+          );
+        })}
+
+        {inputNames2.map((ele) => {
+          return (
+            <>
+              <InputText {...ele} />
+            </>
+          );
+        })}
+        <div className="formDataSub my-4">
+
+          <button type="submit" >{saveBtn}</button>
+        </div>
+
+      </form>
     </div>
   );
 }

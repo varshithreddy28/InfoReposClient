@@ -47,11 +47,11 @@ export default function Header({ handleHeaderContent }) {
   return (
     <div>
       <div className="formHeader">
-        <div className="formH">
+        {/* <div className="formH">
           <div className="formName">FORM 46</div>
           <div className="rule">[Rule 41(3) and 41 (9)]</div>
           <div className="inspectionBy">INSPECTION BY INSPECTION COMMITTEE</div>
-        </div>
+        </div> */}
         <div className="headerInp">
           <div className="inpOneH">
             <div className="inpDate">

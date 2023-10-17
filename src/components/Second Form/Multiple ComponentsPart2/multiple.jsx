@@ -3,22 +3,22 @@ import InputText from "../InputText/input";
 // import CheckBox from "../CheckBoxes/checkbox";
 import RadioButtonGroup from "../RadioBtn Text/checkbox";
 
-export default function Functionality({ handleFunctionalityContent }) {
-  const [functionalitytlnformation, setFunctionalityInformation] = useState({});
+export default function MultipleComponentsP2({ handleMultipleContent }) {
+  const [multiplelnformation2, setMultipleInformation2] = useState({});
   const [saveBtn, setsaveBtn] = useState("Save Data")
 
 
-  const updateFunctionalityDetails = (value, name) => {
-    const oldInfo = JSON.parse(JSON.stringify(functionalitytlnformation));
+  const updateMultipleDetails = (value, name) => {
+    const oldInfo = JSON.parse(JSON.stringify(multiplelnformation2));
     oldInfo[name] = value;
-    setFunctionalityInformation(oldInfo);
+    setMultipleInformation2(oldInfo);
     setsaveBtn("Save Data")
 
   };
 
   useEffect(() => {
-    handleFunctionalityContent(functionalitytlnformation);
-  }, [functionalitytlnformation]);
+    handleMultipleContent(multiplelnformation2);
+  }, [multiplelnformation2]);
 
   // Radio Buttons
   const options = ["Yes", "No"];
@@ -41,225 +41,264 @@ export default function Functionality({ handleFunctionalityContent }) {
 
   const radioInputs = [
     {
-      title: "Computer with internet accessibility",
+      title:
+        "Staff is aware of the nutritional requirement of children at varying stages of development",
       options: ["Yes", "No"],
       selectedOption: selectedOption[0],
       onChange: handleOptionChange,
       horizontal: true,
-      updateInfo: updateFunctionalityDetails,
+      updateInfo: updateMultipleDetails,
       radioInpDetails: radioInpDetails,
       otherValue: "No",
-      label: "computer_internet_accessibility",
+      label: "nutritional_requirement_awareness",
     },
     {
-      title: "Records stored safely",
+      title: "Indoor recreation facilities are available for children",
       options: ["Yes", "No"],
       selectedOption: selectedOption[1],
       onChange: handleOptionChange,
       horizontal: true,
-      updateInfo: updateFunctionalityDetails,
+      updateInfo: updateMultipleDetails,
       radioInpDetails: radioInpDetails,
       otherValue: "No",
-      label: "records_stored_safely",
+      label: "indoor_recreation_facilities",
     },
     {
-      title: "Essential Details including- Emergency Numbers",
+      title: "Outdoor recreation facilities are available for children",
       options: ["Yes", "No"],
       selectedOption: selectedOption[2],
       onChange: handleOptionChange,
       horizontal: true,
-      updateInfo: updateFunctionalityDetails,
+      updateInfo: updateMultipleDetails,
       radioInpDetails: radioInpDetails,
       otherValue: "No",
-      label: "essential_details_emergency_numbers",
+      label: "outdoor_recreation_facilities",
     },
     {
-      title: "Duty Chart",
+      title:
+        "Any innovative activities to develop cooperation/ participation, resilience, etc. are harnessed",
       options: ["Yes", "No"],
       selectedOption: selectedOption[3],
       onChange: handleOptionChange,
       horizontal: true,
-      updateInfo: updateFunctionalityDetails,
+      updateInfo: updateMultipleDetails,
       radioInpDetails: radioInpDetails,
       otherValue: "No",
-      label: "duty_chart",
+      label: "innovative_activities_harnessed",
     },
     {
-      title: "Menu Chart",
+      title:
+        "Clean, seasonal and age-appropriate clothes, articles, and toiletries as per norms are available",
       options: ["Yes", "No"],
       selectedOption: selectedOption[4],
       onChange: handleOptionChange,
       horizontal: true,
-      updateInfo: updateFunctionalityDetails,
+      updateInfo: updateMultipleDetails,
       radioInpDetails: radioInpDetails,
       otherValue: "No",
-      label: "menu_chart",
+      label: "clean_clothes_toiletries_available",
     },
     {
-      title: "Attendance Status",
+      title:
+        "Clean, seasonally appropriate mats and sleeping materials as per norms are available",
       options: ["Yes", "No"],
       selectedOption: selectedOption[5],
       onChange: handleOptionChange,
       horizontal: true,
-      updateInfo: updateFunctionalityDetails,
+      updateInfo: updateMultipleDetails,
       radioInpDetails: radioInpDetails,
       otherValue: "No",
-      label: "attendance_status",
+      label: "clean_mats_sleeping_materials",
     },
     {
-      title: "Weekly Programme Schedule",
+      title:
+        "Sleeping material is cleaned /sanitized regularly or before reuse as needed",
       options: ["Yes", "No"],
       selectedOption: selectedOption[6],
       onChange: handleOptionChange,
       horizontal: true,
-      updateInfo: updateFunctionalityDetails,
+      updateInfo: updateMultipleDetails,
       radioInpDetails: radioInpDetails,
       otherValue: "No",
-      label: "weekly_programme_schedule",
+      label: "sleeping_material_cleaned",
     },
     {
       title:
-        "Safe transport facility for children attaining education outside the campus",
+        "Rooms are regularly fumigated, disinfected and material provided to each child for prevention of infection and disease",
       options: ["Yes", "No"],
       selectedOption: selectedOption[7],
       onChange: handleOptionChange,
       horizontal: true,
-      updateInfo: updateFunctionalityDetails,
+      updateInfo: updateMultipleDetails,
       radioInpDetails: radioInpDetails,
       otherValue: "No",
-      label: "safe_transport_facility_education",
+      label: "rooms_fumigated_disinfected",
     },
     {
-      title: "Separate facilities for children from staff and management",
+      title:
+        "Secured space to store personal belongings is available for each child",
       options: ["Yes", "No"],
       selectedOption: selectedOption[8],
       onChange: handleOptionChange,
       horizontal: true,
-      updateInfo: updateFunctionalityDetails,
+      updateInfo: updateMultipleDetails,
       radioInpDetails: radioInpDetails,
       otherValue: "No",
-      label: "separate_facilities_children_staff",
+      label: "secured_space_personal_belongings",
     },
     {
-      title:
-        "Facilities and support (equipment, staff, teaching and learning materials/aids) for children with special needs",
+      title: "Fans",
       options: ["Yes", "No"],
       selectedOption: selectedOption[9],
       onChange: handleOptionChange,
       horizontal: true,
-      updateInfo: updateFunctionalityDetails,
+      updateInfo: updateMultipleDetails,
       radioInpDetails: radioInpDetails,
       otherValue: "No",
-      label: "facilities_support_special_needs",
+      label: "fans_available",
     },
     {
-      title: "visual needs",
+      title: "Coolers",
       options: ["Yes", "No"],
       selectedOption: selectedOption[10],
       onChange: handleOptionChange,
       horizontal: true,
-      updateInfo: updateFunctionalityDetails,
+      updateInfo: updateMultipleDetails,
       radioInpDetails: radioInpDetails,
       otherValue: "No",
-      label: "visual_needs",
+      label: "coolers_available",
     },
     {
-      title: "Intellectual needs",
+      title: "Air Conditioner",
       options: ["Yes", "No"],
       selectedOption: selectedOption[11],
       onChange: handleOptionChange,
       horizontal: true,
-      updateInfo: updateFunctionalityDetails,
+      updateInfo: updateMultipleDetails,
       radioInpDetails: radioInpDetails,
       otherValue: "No",
-      label: "intellectual_needs",
+      label: "air_conditioner_available",
     },
     {
-      title: "hearing needs",
+      title: "Heaters for Winter",
       options: ["Yes", "No"],
       selectedOption: selectedOption[12],
       onChange: handleOptionChange,
       horizontal: true,
-      updateInfo: updateFunctionalityDetails,
+      updateInfo: updateMultipleDetails,
       radioInpDetails: radioInpDetails,
       otherValue: "No",
-      label: "hearing_needs",
+      label: "heaters_for_winter_available",
     },
     {
-      title: "others",
+      title: "Nurse/paramedical staff is available in the Home at night",
       options: ["Yes", "No"],
       selectedOption: selectedOption[13],
       onChange: handleOptionChange,
       horizontal: true,
-      updateInfo: updateFunctionalityDetails,
+      updateInfo: updateMultipleDetails,
       radioInpDetails: radioInpDetails,
       otherValue: "No",
-      label: "others",
+      label: "nurse_paramedical_staff_available",
     },
     {
-      title:
-        "Rooms and dormitories is free of unstable heavy equipment, furniture, or other items that children could pull down on themselves",
+      title: "Staff is trained to provide First Aid",
       options: ["Yes", "No"],
       selectedOption: selectedOption[14],
       onChange: handleOptionChange,
       horizontal: true,
-      updateInfo: updateFunctionalityDetails,
+      updateInfo: updateMultipleDetails,
       radioInpDetails: radioInpDetails,
       otherValue: "No",
-      label: "rooms_dormitories_free_unstable",
+      label: "staff_trained_first_aid",
     },
     {
-      title: "Privacy maintained in toilets and bathing areas",
+      title: "To provide age-appropriate education option is available",
       options: ["Yes", "No"],
       selectedOption: selectedOption[15],
       onChange: handleOptionChange,
       horizontal: true,
-      updateInfo: updateFunctionalityDetails,
+      updateInfo: updateMultipleDetails,
       radioInpDetails: radioInpDetails,
       otherValue: "No",
-      label: "privacy_maintained_toilets",
+      label: "age_appropriate_education_option_available",
     },
     {
-      title: "Basic emergency medical care equipment available",
+      title:
+        "Option for age-appropriate, feasible, and market-oriented education is available",
       options: ["Yes", "No"],
       selectedOption: selectedOption[16],
       onChange: handleOptionChange,
       horizontal: true,
-      updateInfo: updateFunctionalityDetails,
+      updateInfo: updateMultipleDetails,
       radioInpDetails: radioInpDetails,
       otherValue: "No",
-      label: "emergency_medical_care_equipment",
-    },
-    {
-      title: "Special emergency medical care equipment available",
-      options: ["Yes", "No"],
-      selectedOption: selectedOption[17],
-      onChange: handleOptionChange,
-      horizontal: true,
-      updateInfo: updateFunctionalityDetails,
-      radioInpDetails: radioInpDetails,
-      otherValue: "No",
-      label: "special_emergency_medical_care_equipment",
-    },
+      label: "market_oriented_education_option_available",
+    }
     // Continue with similar objects as needed
   ];
+
   const handleLocalSubmit = (e) => {
     e.preventDefault()
     setsaveBtn("Data Saved")
   }
+
   return (
     <div id="generalInfo">
       <div className="formH">
-        <div className="formName">IV. FUNCTIONALITY</div>
+        <div className="formName">VII. NUTRITION AND RECREATION</div>
       </div>
-      <div className="scndfrmsubheader">Rule 29: Physical Infrastructure</div>
+      <div className="scndfrmsubheader">
+        Rule 33: Nutrition and Diet Scale
+      </div>
       <form onSubmit={handleLocalSubmit}>
 
         {radioInputs.map((radio, index) => {
           return (
             <>
-              {index === 15 ? (
-                <div className="scndfrmsubheader">Rule 67: Security Measures</div>
+              {index === 1 ? (
+                <div className="scndfrmsubheader">
+                  Rule 38: Recreational Facilities
+                </div>
+              ) : index === 4 ? (
+                <>
+                  <div className="formH">
+                    <div className="formName">
+                      VIII. CLOTHING, BEDDING HYGIENE
+                    </div>
+                  </div>
+                  <div className="scndfrmsubheader">
+                    Rule 30: Clothing, Bedding, Toiletries and other articles
+                  </div>
+                </>
+              ) : index === 6 ? (
+                <div className="scndfrmsubheader">
+                  Rule 31: Sanitation and Hygiene
+                </div>
+              ) : index === 9 ? (
+                <div className="checkHeader">
+                  Whether following facilities available in Home for children:
+                </div>
+              ) : index === 13 ? (
+                <>
+                  <div className="formH">
+                    <div className="formName">IX. HEALTH CARE</div>
+                  </div>
+                  <div className="scndfrmsubheader">
+                    Rule 34/35: Medical Care/ Mental Health
+                  </div>
+                </>
+              ) : index === 15 ? (
+                <>
+                  <div className="formH">
+                    <div className="formName">X. EDUCATION</div>
+                  </div>
+                  <div className="scndfrmsubheader">Rule 36/69: Education</div>
+                </>
+              ) : index === 16 ? (
+                <div className="scndfrmsubheader">
+                  Rule 37: Vocational Training
+                </div>
               ) : (
                 ""
               )}

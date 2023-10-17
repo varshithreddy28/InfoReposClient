@@ -7,11 +7,15 @@ import { useForm, FormProvider } from "react-hook-form";
 
 export default function PhysicalInfra({ handlePhysicalInfraContent }) {
   const [PhysicalInfralnformation, setPhysicalInfraInformation] = useState({});
+  const [saveBtn, setsaveBtn] = useState("Save Data")
+
 
   const updatePhysicalInfraDetails = (value, name) => {
     const oldInfo = JSON.parse(JSON.stringify(PhysicalInfralnformation));
     oldInfo[name] = value;
     setPhysicalInfraInformation(oldInfo);
+    setsaveBtn("Save Data")
+
   };
 
   useEffect(() => {
@@ -331,51 +335,64 @@ export default function PhysicalInfra({ handlePhysicalInfraContent }) {
     // Continue with similar objects as needed
   ];
 
+  const handleLocalSubmit = (e) => {
+    e.preventDefault()
+    setsaveBtn("Data Saved")
+  }
+
   return (
     <div id="generalInfo">
       <div className="formH">
         <div className="formName">II. PHYSICAL INFRASTRUCTURE</div>
       </div>
       <div className="scndfrmsubheader">Rule 29: Physical Infrastructure</div>
+      <form onSubmit={handleLocalSubmit}>
 
-      {radioInputs.map((radio, index) => {
-        return (
-          <>
-            <RadioButtonGroup
-              options={radio.options}
-              selectedOption={radio.selectedOption}
-              onChange={radio.onChange}
-              title={radio.title}
-              horizontal={radio.horizontal}
-              updateInfo={radio.updateInfo}
-              radioInpDetails={radio.radioInpDetails}
-              otherValue={radio.otherValue}
-              index={index}
-              label={radio.label}
-            />
-          </>
-        );
-      })}
 
-      <div className="scndfrmsubheader">Rule 31: Sanitation and Hygiene</div>
-      {radioInputs2.map((radio, index) => {
-        return (
-          <>
-            <RadioButtonGroup
-              options={radio.options}
-              selectedOption={radio.selectedOption}
-              onChange={radio.onChange}
-              title={radio.title}
-              horizontal={radio.horizontal}
-              updateInfo={radio.updateInfo}
-              radioInpDetails={radio.radioInpDetails}
-              otherValue={radio.otherValue}
-              index={index}
-              label={radio.label}
-            />
-          </>
-        );
-      })}
+        {radioInputs.map((radio, index) => {
+          return (
+            <>
+              <RadioButtonGroup
+                options={radio.options}
+                selectedOption={radio.selectedOption}
+                onChange={radio.onChange}
+                title={radio.title}
+                horizontal={radio.horizontal}
+                updateInfo={radio.updateInfo}
+                radioInpDetails={radio.radioInpDetails}
+                otherValue={radio.otherValue}
+                index={index}
+                label={radio.label}
+              />
+            </>
+          );
+        })}
+
+        <div className="scndfrmsubheader">Rule 31: Sanitation and Hygiene</div>
+        {radioInputs2.map((radio, index) => {
+          return (
+            <>
+              <RadioButtonGroup
+                options={radio.options}
+                selectedOption={radio.selectedOption}
+                onChange={radio.onChange}
+                title={radio.title}
+                horizontal={radio.horizontal}
+                updateInfo={radio.updateInfo}
+                radioInpDetails={radio.radioInpDetails}
+                otherValue={radio.otherValue}
+                index={index}
+                label={radio.label}
+              />
+            </>
+          );
+        })}
+        <div className="formDataSub my-4">
+
+          <button type="submit" >{saveBtn}</button>
+        </div>
+
+      </form>
     </div>
   );
 }

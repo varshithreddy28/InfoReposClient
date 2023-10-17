@@ -12,6 +12,7 @@ export default function LegalStatus({ handleLegalContent }) {
     const oldInfo = JSON.parse(JSON.stringify(legallnformation));
     oldInfo[name] = value;
     setLegalInformation(oldInfo);
+
   };
 
   useEffect(() => {

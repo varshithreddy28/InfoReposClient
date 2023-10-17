@@ -7,3 +7,16 @@
     margin-top: 1.75%;
     text-align: center;
 }
+
+.formDataSub {
+    text-align: end;
+}
+
+.formDataSub button {
+    background-color: #1cabe2;
+    padding: 6px 14px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: 500;
+}

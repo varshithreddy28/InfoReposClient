@@ -2,16 +2,21 @@ import React, { useState, useEffect } from "react";
 import InputText from "../InputText/input";
 import "./record.css";
 // import CheckBox from "../CheckBoxes/checkbox";
-import RadioButtonGroup from "../CheckBoxes/checkbox";
+// import RadioButtonGroup from "../CheckBoxes/checkbox";
+import RadioButtonGroup from "../RadioBtn Text/checkbox";
 
 export default function RecordMaintenance({ handleRecordContent }) {
   const [recordMaintenanceInformation, setRecordMaintenanceInformation] =
     useState({});
+  const [saveBtn, setsaveBtn] = useState("Save Data")
+
 
   const updateRecordDetails = (value, name) => {
     const oldInfo = JSON.parse(JSON.stringify(recordMaintenanceInformation));
     oldInfo[name] = value;
     setRecordMaintenanceInformation(oldInfo);
+    setsaveBtn("Save Data")
+
   };
 
   useEffect(() => {
@@ -179,36 +184,48 @@ export default function RecordMaintenance({ handleRecordContent }) {
     },
   ];
 
+  const handleLocalSubmit = (e) => {
+    e.preventDefault()
+    setsaveBtn("Data Saved")
+  }
+
   return (
     <div>
       <div className="genHeader">G. Record Maintenance</div>
 
-      {radioInputs.map((radio, index) => {
-        return (
-          <>
-            <RadioButtonGroup
-              options={radio.options}
-              selectedOption={radio.selectedOption}
-              onChange={radio.onChange}
-              title={radio.title}
-              horizontal={radio.horizontal}
-              updateInfo={radio.updateInfo}
-              radioInpDetails={radio.radioInpDetails}
-              otherValue={radio.otherValue}
-              index={index}
-              label={radio.label}
-            />
-          </>
-        );
-      })}
+      <form onSubmit={handleLocalSubmit}>
+        {radioInputs.map((radio, index) => {
+          return (
+            <>
+              <RadioButtonGroup
+                options={radio.options}
+                selectedOption={radio.selectedOption}
+                onChange={radio.onChange}
+                title={radio.title}
+                horizontal={radio.horizontal}
+                updateInfo={radio.updateInfo}
+                radioInpDetails={radio.radioInpDetails}
+                otherValue={radio.otherValue}
+                index={index}
+                label={radio.label}
+              />
+            </>
+          );
+        })}
 
-      {inputNames.map((ele) => {
-        return (
-          <>
-            <InputText {...ele} />
-          </>
-        );
-      })}
+        {inputNames.map((ele) => {
+          return (
+            <>
+              <InputText {...ele} />
+            </>
+          );
+        })}
+        <div className="formDataSub my-4">
+
+          <button type="submit" >{saveBtn}</button>
+        </div>
+
+      </form>
     </div>
   );
 }

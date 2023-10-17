@@ -5,16 +5,21 @@ import DatePickerComp from "../Date/date";
 import InputNumber from "../InputNumber/input";
 import InputEmail from "../InputEmail/input";
 // import CheckBox from "../CheckBoxes/checkbox";
-import RadioButtonGroup from "../CheckBoxes/checkbox";
+// import RadioButtonGroup from "../CheckBoxes/checkbox";
+import RadioButtonGroup from "../RadioBtn Text/checkbox";
 import InputArea from "../InputArea/input";
 
 export default function Status({ handleStatusContent }) {
   const [statusInformation, setStatusInformation] = useState({});
+  const [saveBtn, setsaveBtn] = useState("Save Data")
+
 
   const updateStatusDetails = (value, name) => {
     const oldInfo = JSON.parse(JSON.stringify(statusInformation));
     oldInfo[name] = value;
     setStatusInformation(oldInfo);
+    setsaveBtn("Save Data")
+
   };
 
   useEffect(() => {
@@ -205,84 +210,97 @@ export default function Status({ handleStatusContent }) {
     },
   ];
 
+  const handleLocalSubmit = (e) => {
+    e.preventDefault()
+    setsaveBtn("Data Saved")
+  }
+
   return (
     <div>
       <div className="genHeader">B. Status of Children</div>
-      {inputNames.map((ele) => {
-        return (
-          <>
-            <InputText {...ele} />
-          </>
-        );
-      })}
+      <form onSubmit={handleLocalSubmit}>
 
-      {radioInputs.map((radio, index) => {
-        return (
-          <>
-            <RadioButtonGroup
-              options={radio.options}
-              selectedOption={radio.selectedOption}
-              onChange={radio.onChange}
-              title={radio.title}
-              horizontal={radio.horizontal}
-              updateInfo={radio.updateInfo}
-              radioInpDetails={radio.radioInpDetails}
-              otherValue={radio.otherValue}
-              index={index}
-              label={radio.label}
-            />
-          </>
-        );
-      })}
-
-      <div className="status_seg">
-        <div className="header_stats">
-          Are children segregated in the age group given below? Give number of
-          children in the age group of
-        </div>
-        {inputNames2.map((ele) => {
+        {inputNames.map((ele) => {
           return (
             <>
               <InputText {...ele} />
             </>
           );
         })}
-      </div>
 
-      {radioInputs2.map((radio, index) => {
-        return (
-          <>
-            <RadioButtonGroup
-              options={radio.options}
-              selectedOption={radio.selectedOption}
-              onChange={radio.onChange}
-              title={radio.title}
-              horizontal={radio.horizontal}
-              updateInfo={radio.updateInfo}
-              radioInpDetails={radio.radioInpDetails}
-              otherValue={radio.otherValue}
-              index={index}
-              label={radio.label}
-            />
-          </>
-        );
-      })}
+        {radioInputs.map((radio, index) => {
+          return (
+            <>
+              <RadioButtonGroup
+                options={radio.options}
+                selectedOption={radio.selectedOption}
+                onChange={radio.onChange}
+                title={radio.title}
+                horizontal={radio.horizontal}
+                updateInfo={radio.updateInfo}
+                radioInpDetails={radio.radioInpDetails}
+                otherValue={radio.otherValue}
+                index={index}
+                label={radio.label}
+              />
+            </>
+          );
+        })}
 
-      {inputNumber.map((ele) => {
-        return (
-          <>
-            <InputNumber {...ele} />
-          </>
-        );
-      })}
+        <div className="status_seg">
+          <div className="header_stats">
+            Are children segregated in the age group given below? Give number of
+            children in the age group of
+          </div>
+          {inputNames2.map((ele) => {
+            return (
+              <>
+                <InputText {...ele} />
+              </>
+            );
+          })}
+        </div>
 
-      {inputAreas.map((ele) => {
-        return (
-          <>
-            <InputArea {...ele} />
-          </>
-        );
-      })}
+        {radioInputs2.map((radio, index) => {
+          return (
+            <>
+              <RadioButtonGroup
+                options={radio.options}
+                selectedOption={radio.selectedOption}
+                onChange={radio.onChange}
+                title={radio.title}
+                horizontal={radio.horizontal}
+                updateInfo={radio.updateInfo}
+                radioInpDetails={radio.radioInpDetails}
+                otherValue={radio.otherValue}
+                index={index}
+                label={radio.label}
+              />
+            </>
+          );
+        })}
+
+        {inputNumber.map((ele) => {
+          return (
+            <>
+              <InputNumber {...ele} />
+            </>
+          );
+        })}
+
+        {inputAreas.map((ele) => {
+          return (
+            <>
+              <InputArea {...ele} />
+            </>
+          );
+        })}
+        <div className="formDataSub my-4">
+
+          <button type="submit" >{saveBtn}</button>
+        </div>
+
+      </form>
     </div>
   );
 }

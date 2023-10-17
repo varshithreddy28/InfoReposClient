@@ -5,7 +5,8 @@ import DatePickerComp from "../Date/date";
 import InputNumber from "../InputNumber/input";
 import InputEmail from "../InputEmail/input";
 // import CheckBox from "../CheckBoxes/checkbox";
-import RadioButtonGroup from "../CheckBoxes/checkbox";
+// import RadioButtonGroup from "../CheckBoxes/checkbox";
+import RadioButtonGroup from "../RadioBtn Text/checkbox";
 
 export default function Infrastructure({ handleInfraContent }) {
   const [infraInformation, setInfraInformation] = useState({});
@@ -812,123 +813,132 @@ export default function Infrastructure({ handleInfraContent }) {
     },
   ];
 
+  const handleLocalSubmit = (e) => {
+    e.preventDefault()
+  }
+
   return (
     <div>
       <div className="genHeader">C. Infrastructure</div>
+      <form onSubmit={handleLocalSubmit}>
+        {radioInputs.map((radio, index) => {
+          return (
+            <>
+              <RadioButtonGroup
+                options={radio.options}
+                selectedOption={radio.selectedOption}
+                onChange={radio.onChange}
+                title={radio.title}
+                horizontal={radio.horizontal}
+                updateInfo={radio.updateInfo}
+                radioInpDetails={radio.radioInpDetails}
+                otherValue={radio.otherValue}
+                index={index}
+                label={radio.label}
+              />
+            </>
+          );
+        })}
+        {inputNumber.map((ele) => {
+          return (
+            <>
+              <InputNumber {...ele} />
+            </>
+          );
+        })}
+        {inputNames.map((ele) => {
+          return (
+            <>
+              <InputText {...ele} />
+            </>
+          );
+        })}
+        {/* Radio Btns */}
+        <div className="genHeader">Recreational / activity room for Children</div>
+        {radioInputs2.map((radio, index) => {
+          return (
+            <>
+              <RadioButtonGroup
+                options={radio.options}
+                selectedOption={radio.selectedOption}
+                onChange={radio.onChange}
+                title={radio.title}
+                horizontal={radio.horizontal}
+                updateInfo={radio.updateInfo}
+                radioInpDetails={radio.radioInpDetails}
+                otherValue={radio.otherValue}
+                index={index}
+                label={radio.label}
+              />
+            </>
+          );
+        })}
+        <div className="genHeader">Kitchen / Dining Room</div>
+        {radioInputs3.map((radio, index) => {
+          return (
+            <>
+              {index === 11 ? (
+                <div className="genHeader">
+                  Number of toilets & bathrooms for Children
+                </div>
+              ) : (
+                ""
+              )}
+              <RadioButtonGroup
+                options={radio.options}
+                selectedOption={radio.selectedOption}
+                onChange={radio.onChange}
+                title={radio.title}
+                horizontal={radio.horizontal}
+                updateInfo={radio.updateInfo}
+                radioInpDetails={radio.radioInpDetails}
+                otherValue={radio.otherValue}
+                index={index}
+                label={radio.label}
+              />
+            </>
+          );
+        })}
 
-      {radioInputs.map((radio, index) => {
-        return (
-          <>
-            <RadioButtonGroup
-              options={radio.options}
-              selectedOption={radio.selectedOption}
-              onChange={radio.onChange}
-              title={radio.title}
-              horizontal={radio.horizontal}
-              updateInfo={radio.updateInfo}
-              radioInpDetails={radio.radioInpDetails}
-              otherValue={radio.otherValue}
-              index={index}
-              label={radio.label}
-            />
-          </>
-        );
-      })}
-      {inputNumber.map((ele) => {
-        return (
-          <>
-            <InputNumber {...ele} />
-          </>
-        );
-      })}
-      {inputNames.map((ele) => {
-        return (
-          <>
-            <InputText {...ele} />
-          </>
-        );
-      })}
-      {/* Radio Btns */}
-      <div className="genHeader">Recreational / activity room for Children</div>
-      {radioInputs2.map((radio, index) => {
-        return (
-          <>
-            <RadioButtonGroup
-              options={radio.options}
-              selectedOption={radio.selectedOption}
-              onChange={radio.onChange}
-              title={radio.title}
-              horizontal={radio.horizontal}
-              updateInfo={radio.updateInfo}
-              radioInpDetails={radio.radioInpDetails}
-              otherValue={radio.otherValue}
-              index={index}
-              label={radio.label}
-            />
-          </>
-        );
-      })}
-      <div className="genHeader">Kitchen / Dining Room</div>
-      {radioInputs3.map((radio, index) => {
-        return (
-          <>
-            {index === 11 ? (
-              <div className="genHeader">
-                Number of toilets & bathrooms for Children
-              </div>
-            ) : (
-              ""
-            )}
-            <RadioButtonGroup
-              options={radio.options}
-              selectedOption={radio.selectedOption}
-              onChange={radio.onChange}
-              title={radio.title}
-              horizontal={radio.horizontal}
-              updateInfo={radio.updateInfo}
-              radioInpDetails={radio.radioInpDetails}
-              otherValue={radio.otherValue}
-              index={index}
-              label={radio.label}
-            />
-          </>
-        );
-      })}
+        <div className="genHeader">Premises</div>
+        {radioInputs4.map((radio, index) => {
+          return (
+            <>
+              {index === 8 ? (
+                <div className="genHeader">
+                  Clothing / Bedding/Lockers/ Toiletries provided to the children
+                </div>
+              ) : (
+                ""
+              )}
+              <RadioButtonGroup
+                options={radio.options}
+                selectedOption={radio.selectedOption}
+                onChange={radio.onChange}
+                title={radio.title}
+                horizontal={radio.horizontal}
+                updateInfo={radio.updateInfo}
+                radioInpDetails={radio.radioInpDetails}
+                otherValue={radio.otherValue}
+                index={index}
+                label={radio.label}
+              />
+            </>
+          );
+        })}
 
-      <div className="genHeader">Premises</div>
-      {radioInputs4.map((radio, index) => {
-        return (
-          <>
-            {index === 8 ? (
-              <div className="genHeader">
-                Clothing / Bedding/Lockers/ Toiletries provided to the children
-              </div>
-            ) : (
-              ""
-            )}
-            <RadioButtonGroup
-              options={radio.options}
-              selectedOption={radio.selectedOption}
-              onChange={radio.onChange}
-              title={radio.title}
-              horizontal={radio.horizontal}
-              updateInfo={radio.updateInfo}
-              radioInpDetails={radio.radioInpDetails}
-              otherValue={radio.otherValue}
-              index={index}
-              label={radio.label}
-            />
-          </>
-        );
-      })}
+        {inputNames2.map((ele) => {
+          return (
+            <>
+              <InputText {...ele} />
+            </>
+          );
+        })}
+        <div className="formDataSub my-4">
 
-      {inputNames2.map((ele) => {
-        return (
-          <>
-            <InputText {...ele} />
-          </>
-        );
-      })}
+          <button type="submit">Save Data</button>
+        </div>
+      </form>
     </div>
   );
 }

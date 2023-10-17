@@ -9,11 +9,14 @@ export default function RecordFinancialComponents({
   const [recordFinanciallnformation, setRecordFinancialInformation] = useState(
     {}
   );
+  const [saveBtn, setsaveBtn] = useState("Save Data")
+
 
   const updateRecordFinancialDetails = (value, name) => {
     const oldInfo = JSON.parse(JSON.stringify(recordFinanciallnformation));
     oldInfo[name] = value;
     setRecordFinancialInformation(oldInfo);
+    setsaveBtn("Save Data")
   };
 
   useEffect(() => {
@@ -309,47 +312,59 @@ export default function RecordFinancialComponents({
     },
     // Continue with similar objects as needed
   ];
-
+  const handleLocalSubmit = (e) => {
+    e.preventDefault()
+    setsaveBtn("Data Saved")
+  }
   return (
     <div id="generalInfo">
       <div className="formH">
         <div className="formName">XI. RECORD MAINTENANCE</div>
       </div>
       <div className="scndfrmsubheader">Rule 77: Maintenance of Registers</div>
+      <form onSubmit={handleLocalSubmit}>
 
-      {radioInputs.map((radio, index) => {
-        return (
-          <>
-            {index === 16 ? (
-              <>
-                <div className="formH">
-                  <div className="formName">XII. FINANCIAL TRANSPARENCY</div>
-                </div>
-              </>
-            ) : index === 23 ? (
-              <>
-                <div className="scndfrmsubheader">
-                  Rule 53: Accounts and audit of the Authority
-                </div>
-              </>
-            ) : (
-              ""
-            )}
-            <RadioButtonGroup
-              options={radio.options}
-              selectedOption={radio.selectedOption}
-              onChange={radio.onChange}
-              title={radio.title}
-              horizontal={radio.horizontal}
-              updateInfo={radio.updateInfo}
-              radioInpDetails={radio.radioInpDetails}
-              otherValue={radio.otherValue}
-              index={index}
-              label={radio.label}
-            />
-          </>
-        );
-      })}
+        {radioInputs.map((radio, index) => {
+          return (
+            <>
+              {index === 16 ? (
+                <>
+                  <div className="formH">
+                    <div className="formName">XII. FINANCIAL TRANSPARENCY</div>
+                  </div>
+                </>
+              ) : index === 23 ? (
+                <>
+                  <div className="scndfrmsubheader">
+                    Rule 53: Accounts and audit of the Authority
+                  </div>
+                </>
+              ) : (
+                ""
+              )}
+              <RadioButtonGroup
+                options={radio.options}
+                selectedOption={radio.selectedOption}
+                onChange={radio.onChange}
+                title={radio.title}
+                horizontal={radio.horizontal}
+                updateInfo={radio.updateInfo}
+                radioInpDetails={radio.radioInpDetails}
+                otherValue={radio.otherValue}
+                index={index}
+                label={radio.label}
+              />
+            </>
+          );
+        })}
+
+        <div className="formDataSub my-4">
+
+          <button type="submit" >{saveBtn}</button>
+        </div>
+
+      </form>
+
     </div>
   );
 }

@@ -1,5 +1,3 @@
-import General from "../../components/Second Form/GeneralInfo/general";
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Header from "../../components/Second Form//header/header";
@@ -7,6 +5,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 import "./secondform.css";
+import Accordion from "react-bootstrap/Accordion";
 
 import { useNavigate } from "react-router-dom";
 import LegalStatus from "../../components/Second Form/LegalStatus/legalStatus";
@@ -17,6 +16,9 @@ import MultipleComponents from "../../components/Second Form/Multiple Components
 import RecordFinancialComponents from "../../components/Second Form/Records Financial/recordfinancial";
 import Recomend from "../../components/Second Form/Recomendation/recomend";
 import Status from "../../components/Second Form/Status/Status";
+import { Container } from "react-bootstrap";
+import MultipleComponentsP2 from "../../components/Second Form/Multiple ComponentsPart2/multiple";
+
 
 function SecondForm({ handleFormSuccess }) {
   let navigate = useNavigate();
@@ -28,6 +30,7 @@ function SecondForm({ handleFormSuccess }) {
     managementContent: {},
     functionalityContent: {},
     multipleContent: {},
+    multipleContent2: {},
     record_financial_Content: {},
     recommendContent: {},
   });
@@ -38,6 +41,7 @@ function SecondForm({ handleFormSuccess }) {
   const [managementContent, setmanagementContent] = useState({});
   const [functionalityContent, setfunctionalityContent] = useState({});
   const [multipleContent, setmultipleContent] = useState({});
+  const [multipleContent2, setmultipleContent2] = useState({});
   const [record_financial_Content, set_record_financial_Content] = useState({});
   const [recommendContent, setRecommendContent] = useState({});
   const [statusContent, setStatusContent] = useState({});
@@ -70,7 +74,9 @@ function SecondForm({ handleFormSuccess }) {
   const handlemultipleContent = (content) => {
     setmultipleContent(content);
   };
-
+  const handlemultipleContent2 = (content) => {
+    setmultipleContent2(content);
+  };
   const handleRecordFinancialContent = (content) => {
     set_record_financial_Content(content);
   };
@@ -88,6 +94,7 @@ function SecondForm({ handleFormSuccess }) {
       managementContent,
       functionalityContent,
       multipleContent,
+      multipleContent2,
       record_financial_Content,
       recommendContent,
     });
@@ -99,6 +106,7 @@ function SecondForm({ handleFormSuccess }) {
     managementContent,
     functionalityContent,
     multipleContent,
+    multipleContent2,
     record_financial_Content,
     recommendContent,
   ]);
@@ -152,15 +160,22 @@ function SecondForm({ handleFormSuccess }) {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    console.log(formErr);
-    console.log(data);
     setSubmiting(true);
+    const tokenCookie = localStorage.getItem("accessToken");
+
     if (formErr === null)
       try {
         const response = await axios.post(
           "https://inforeposerver.onrender.com/addFormTwo",
+          // "http://localhost:3000/addFormTwo",
           { ...data },
-          { withCredentials: true }
+          {
+            withCredentials: true,
+            headers: {
+              authorization: tokenCookie,
+              "Content-Type": "application/json",
+            },
+          }
         );
         setSubmiting(false);
         if (response.status === 200) {
@@ -187,51 +202,165 @@ function SecondForm({ handleFormSuccess }) {
 
   return (
     <div className="App container">
-      <form onSubmit={handleFormSubmit}>
-        <Header handleHeaderContent={handleHeaderContent} />
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-        <Status handleStatusContent={handleStatusContent} />
-        <LegalStatus handleLegalContent={handleLegalContent} />
-        <PhysicalInfra
-          handlePhysicalInfraContent={handlephysicalInfraContent}
-        />
-        <Management handleManagementContent={handlemanagementContent} />
-        <Functionality
-          handleFunctionalityContent={handlefunctionalityContent}
-        />
-        <MultipleComponents handleMultipleContent={handlemultipleContent} />
-        <RecordFinancialComponents
-          handleRecordFinancialContent={handleRecordFinancialContent}
-        />
-        <Recomend handleRecomendContent={handleRecommendContent} />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
 
-        {/* <Status handleStatusContent={handleStatusContent} />
+      <div className="formH">
+        <div className="formName">FORM 46A</div>
+        <div className="rule">[Rule 21(3) and Rule 21(15)]</div>
+        <div className="inspectionBy">
+          INSPECTION FORMAT FOR REGISTERATION AND RENEWAL OF A CHILD CARE
+          INSTITUTION
+        </div>
+      </div>
+      <div className="accordation_cnt my-5">
+        <Accordion>
+          <Accordion.Item eventKey="0">
+            <Accordion.Header>
+              {" "}
+              <span className="detailsfill">Inspection Information</span>
+            </Accordion.Header>
+            <Accordion.Body className="py-4">
+              <Container >
+                <Header handleHeaderContent={handleHeaderContent} />
+
+              </Container>
+            </Accordion.Body>
+          </Accordion.Item>
+          <Accordion.Item eventKey="1">
+            <Accordion.Header>
+              {" "}
+              <span className="detailsfill">Status of Children</span>
+            </Accordion.Header>
+            <Accordion.Body className="py-4">
+              <Container >
+                <Status handleStatusContent={handleStatusContent} />
+              </Container>
+            </Accordion.Body>
+          </Accordion.Item>
+          <Accordion.Item eventKey="3">
+            <Accordion.Header>
+              {" "}
+              <span className="detailsfill">Legal Status</span>
+            </Accordion.Header>
+            <Accordion.Body className="py-4">
+              <Container >
+                <LegalStatus handleLegalContent={handleLegalContent} />
+              </Container>
+            </Accordion.Body>
+          </Accordion.Item>
+          <Accordion.Item eventKey="4">
+            <Accordion.Header>
+              {" "}
+              <span className="detailsfill">PHYSICAL INFRASTRUCTURE</span>
+            </Accordion.Header>
+            <Accordion.Body className="py-4">
+              <Container >
+                <PhysicalInfra
+                  handlePhysicalInfraContent={handlephysicalInfraContent}
+                />
+              </Container>
+            </Accordion.Body>
+          </Accordion.Item>
+          <Accordion.Item eventKey="5">
+            <Accordion.Header>
+              {" "}
+              <span className="detailsfill">Management/ Staffing Parttner</span>
+            </Accordion.Header>
+            <Accordion.Body className="py-4">
+              <Container >
+                <Management handleManagementContent={handlemanagementContent} />
+              </Container>
+            </Accordion.Body>
+          </Accordion.Item>
+          <Accordion.Item eventKey="6">
+            <Accordion.Header>
+              {" "}
+              <span className="detailsfill">Functionality</span>
+            </Accordion.Header>
+            <Accordion.Body className="py-4">
+              <Container >
+                <Functionality
+                  handleFunctionalityContent={handlefunctionalityContent}
+                />
+              </Container>
+            </Accordion.Body>
+          </Accordion.Item>
+          <Accordion.Item eventKey="7">
+            <Accordion.Header>
+              {" "}
+              <span className="detailsfill">Preservation and  Protection from Abuse, Daily Routines</span>
+            </Accordion.Header>
+            <Accordion.Body className="py-4">
+              <Container >
+                <MultipleComponents handleMultipleContent={handlemultipleContent} />
+              </Container>
+            </Accordion.Body>
+          </Accordion.Item>
+          <Accordion.Item eventKey="8">
+            <Accordion.Header>
+              {" "}
+              <span className="detailsfill">Nutrition and  Recreation, Clothing, Bedding Hygine , Health Care & Education</span>
+            </Accordion.Header>
+            <Accordion.Body className="py-4">
+              <Container >
+                <MultipleComponentsP2 handleMultipleContent={handlemultipleContent2} />
+              </Container>
+            </Accordion.Body>
+          </Accordion.Item>
+          <Accordion.Item eventKey="9">
+            <Accordion.Header>
+              {" "}
+              <span className="detailsfill">Record Maintanance & Financial Transparency</span>
+            </Accordion.Header>
+            <Accordion.Body className="py-4">
+              <Container >
+                <RecordFinancialComponents
+                  handleRecordFinancialContent={handleRecordFinancialContent}
+                />
+              </Container>
+            </Accordion.Body>
+          </Accordion.Item>
+          <Accordion.Item eventKey="10">
+            <Accordion.Header>
+              {" "}
+              <span className="detailsfill">Recommendation by District Magistrate for Registration</span>
+            </Accordion.Header>
+            <Accordion.Body className="py-4">
+              <Container >
+                <Recomend handleRecomendContent={handleRecommendContent} />
+              </Container>
+            </Accordion.Body>
+          </Accordion.Item>
+
+
+
+          {/* <Status handleStatusContent={handleStatusContent} />
         <Infrastructure handleInfraContent={handleInfraContent} />
         <Service handleServiceContent={handleServiceContent} />
         <StaffForm handleStaffContent={handlestaffContent} />
         <Committe handleCommitteContent={handleCommitteContent} />
         <RecordMaintenance handleRecordContent={handleRecordContent} />
         <Remarks handleRemarkContent={handleRemarkContent} /> */}
-        {/* <Submit data={data} /> */}
-
-        <div className="formSubmitBtn">
-          <button type="submit" id="btnsbmit">
-            {submiting
-              ? "Submiting the  Inspection Report Please Wait!!!"
-              : "Submit Inspection Report"}
-          </button>
-        </div>
-      </form>
+          {/* <Submit data={data} /> */}
+        </Accordion>
+      </div>
+      <div className="formSubmitBtn">
+        <button type="submit" id="btnsbmit" onClick={handleFormSubmit}>
+          {submiting
+            ? "Submiting the  Inspection Report Please Wait!!!"
+            : "Submit Inspection Report"}
+        </button>
+      </div>
     </div>
   );
 }

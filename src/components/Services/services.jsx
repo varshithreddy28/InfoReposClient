@@ -5,16 +5,21 @@ import DatePickerComp from "../Date/date";
 import InputNumber from "../InputNumber/input";
 import InputEmail from "../InputEmail/input";
 // import CheckBox from "../CheckBoxes/checkbox";
-import RadioButtonGroup from "../CheckBoxes/checkbox";
+// import RadioButtonGroup from "../CheckBoxes/checkbox";
+import RadioButtonGroup from "../RadioBtn Text/checkbox";
 import InputArea from "../InputArea/input";
 
 export default function Service({ handleServiceContent }) {
   const [serviceInfo, setServiceContent] = useState({});
+  const [saveBtn, setsaveBtn] = useState("Save Data")
+
 
   const updateServiceDetails = (value, name) => {
     const oldInfo = JSON.parse(JSON.stringify(serviceInfo));
     oldInfo[name] = value;
     setServiceContent(oldInfo);
+    setsaveBtn("Save Data")
+
   };
 
   useEffect(() => {
@@ -227,53 +232,66 @@ export default function Service({ handleServiceContent }) {
     },
   ];
 
+  const handleLocalSubmit = (e) => {
+    e.preventDefault()
+    setsaveBtn("Data Saved")
+  }
+
   return (
     <div>
       <div className="genHeader">D. Services provided to the children</div>
-      {inputNames.map((ele) => {
-        return (
-          <>
-            <InputArea {...ele} />
-          </>
-        );
-      })}
+      <form onSubmit={handleLocalSubmit}>
 
-      <div className="genHeader">Daily Routine of Children</div>
-      {inputNames2.map((ele) => {
-        return (
-          <>
-            <InputText {...ele} />
-          </>
-        );
-      })}
+        {inputNames.map((ele) => {
+          return (
+            <>
+              <InputArea {...ele} />
+            </>
+          );
+        })}
 
-      <div className="genHeader">Computer/ Internet/ Phone</div>
-      {radioInputs.map((radio, index) => {
-        return (
-          <>
-            <RadioButtonGroup
-              options={radio.options}
-              selectedOption={radio.selectedOption}
-              onChange={radio.onChange}
-              title={radio.title}
-              horizontal={radio.horizontal}
-              updateInfo={radio.updateInfo}
-              radioInpDetails={radio.radioInpDetails}
-              otherValue={radio.otherValue}
-              index={index}
-              label={radio.label}
-            />
-          </>
-        );
-      })}
+        <div className="genHeader">Daily Routine of Children</div>
+        {inputNames2.map((ele) => {
+          return (
+            <>
+              <InputText {...ele} />
+            </>
+          );
+        })}
 
-      {inputNames3.map((ele) => {
-        return (
-          <>
-            <InputArea {...ele} />
-          </>
-        );
-      })}
+        <div className="genHeader">Computer/ Internet/ Phone</div>
+        {radioInputs.map((radio, index) => {
+          return (
+            <>
+              <RadioButtonGroup
+                options={radio.options}
+                selectedOption={radio.selectedOption}
+                onChange={radio.onChange}
+                title={radio.title}
+                horizontal={radio.horizontal}
+                updateInfo={radio.updateInfo}
+                radioInpDetails={radio.radioInpDetails}
+                otherValue={radio.otherValue}
+                index={index}
+                label={radio.label}
+              />
+            </>
+          );
+        })}
+
+        {inputNames3.map((ele) => {
+          return (
+            <>
+              <InputArea {...ele} />
+            </>
+          );
+        })}
+        <div className="formDataSub my-4">
+
+          <button type="submit" >{saveBtn}</button>
+        </div>
+
+      </form>
     </div>
   );
 }

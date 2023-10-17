@@ -5,11 +5,15 @@ import RadioButtonGroup from "../RadioBtn Text/checkbox";
 
 export default function Management({ handleManagementContent }) {
   const [managementlnformation, setManagementInformation] = useState({});
+  const [saveBtn, setsaveBtn] = useState("Save Data")
+
 
   const updateManagementDetails = (value, name) => {
     const oldInfo = JSON.parse(JSON.stringify(managementlnformation));
     oldInfo[name] = value;
     setManagementInformation(oldInfo);
+    setsaveBtn("Save Data")
+
   };
 
   useEffect(() => {
@@ -327,6 +331,11 @@ export default function Management({ handleManagementContent }) {
     // Continue with similar objects as needed
   ];
 
+  const handleLocalSubmit = (e) => {
+    e.preventDefault()
+    setsaveBtn("Data Saved")
+  }
+
   return (
     <div id="generalInfo">
       <div className="formH">
@@ -335,63 +344,70 @@ export default function Management({ handleManagementContent }) {
       <div className="scndfrmsubheader">
         Rule 26: Management and Monitoring of Child Care Institutions
       </div>
+      <form onSubmit={handleLocalSubmit}>
 
-      {radioInputs.map((radio, index) => {
-        return (
-          <>
-            <RadioButtonGroup
-              options={radio.options}
-              selectedOption={radio.selectedOption}
-              onChange={radio.onChange}
-              title={radio.title}
-              horizontal={radio.horizontal}
-              updateInfo={radio.updateInfo}
-              radioInpDetails={radio.radioInpDetails}
-              otherValue={radio.otherValue}
-              index={index}
-              label={radio.label}
-            />
-          </>
-        );
-      })}
+        {radioInputs.map((radio, index) => {
+          return (
+            <>
+              <RadioButtonGroup
+                options={radio.options}
+                selectedOption={radio.selectedOption}
+                onChange={radio.onChange}
+                title={radio.title}
+                horizontal={radio.horizontal}
+                updateInfo={radio.updateInfo}
+                radioInpDetails={radio.radioInpDetails}
+                otherValue={radio.otherValue}
+                index={index}
+                label={radio.label}
+              />
+            </>
+          );
+        })}
 
-      <div className="scndfrmsubheader">
-        Rule 89: Training of Personnel Dealing with Children
-      </div>
-      {radioInputs1.map((radio, index) => {
-        return (
-          <>
-            {index === 5 ? (
-              <div className="scndfrmsubheader">
-                Rule 76: Abuse and Exploitation of the child
-              </div>
-            ) : index === 7 ? (
-              <div className="scndfrmsubheader">
-                Rule 65: Rehabilitation-cumPlacement Officer
-              </div>
-            ) : index === 8 ? (
-              <div className="scndfrmsubheader">
-                Rule 61: Duties of the Person-incharge of a Child Care
-                Institution
-              </div>
-            ) : (
-              ""
-            )}
-            <RadioButtonGroup
-              options={radio.options}
-              selectedOption={radio.selectedOption}
-              onChange={radio.onChange}
-              title={radio.title}
-              horizontal={radio.horizontal}
-              updateInfo={radio.updateInfo}
-              radioInpDetails={radio.radioInpDetails}
-              otherValue={radio.otherValue}
-              index={index}
-              label={radio.label}
-            />
-          </>
-        );
-      })}
+        <div className="scndfrmsubheader">
+          Rule 89: Training of Personnel Dealing with Children
+        </div>
+        {radioInputs1.map((radio, index) => {
+          return (
+            <>
+              {index === 5 ? (
+                <div className="scndfrmsubheader">
+                  Rule 76: Abuse and Exploitation of the child
+                </div>
+              ) : index === 7 ? (
+                <div className="scndfrmsubheader">
+                  Rule 65: Rehabilitation-cumPlacement Officer
+                </div>
+              ) : index === 8 ? (
+                <div className="scndfrmsubheader">
+                  Rule 61: Duties of the Person-incharge of a Child Care
+                  Institution
+                </div>
+              ) : (
+                ""
+              )}
+              <RadioButtonGroup
+                options={radio.options}
+                selectedOption={radio.selectedOption}
+                onChange={radio.onChange}
+                title={radio.title}
+                horizontal={radio.horizontal}
+                updateInfo={radio.updateInfo}
+                radioInpDetails={radio.radioInpDetails}
+                otherValue={radio.otherValue}
+                index={index}
+                label={radio.label}
+              />
+            </>
+          );
+        })}
+        <div className="formDataSub my-4">
+
+          <button type="submit" >{saveBtn}</button>
+        </div>
+
+      </form>
     </div>
   );
 }

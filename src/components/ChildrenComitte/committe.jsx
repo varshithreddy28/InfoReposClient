@@ -5,15 +5,20 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import InputEmail from "../InputEmail/input";
 // import CheckBox from "../CheckBoxes/checkbox";
-import RadioButtonGroup from "../CheckBoxes/checkbox";
+// import RadioButtonGroup from "../CheckBoxes/checkbox";
+import RadioButtonGroup from "../RadioBtn Text/checkbox";
 
 export default function Committe({ handleCommitteContent }) {
   const [committelnformation, setCommitteInformation] = useState({});
+  const [saveBtn, setsaveBtn] = useState("Save Data")
+
 
   const updateCommitteDetails = (value, name) => {
     const oldInfo = JSON.parse(JSON.stringify(committelnformation));
     oldInfo[name] = value;
     setCommitteInformation(oldInfo);
+    setsaveBtn("Save Data")
+
   };
 
   useEffect(() => {
@@ -112,78 +117,88 @@ export default function Committe({ handleCommitteContent }) {
       );
   }, [selectedDate]);
 
+  const handleLocalSubmit = (e) => {
+    e.preventDefault()
+    setsaveBtn("Data Saved")
+  }
+
   return (
     <div>
       <div className="genHeader">
         F. Children’s Committee / Management Committee
       </div>
+      <form onSubmit={handleLocalSubmit}>
 
-      {radioInputs.map((radio, index) => {
-        return (
-          <>
-            <RadioButtonGroup
-              options={radio.options}
-              selectedOption={radio.selectedOption}
-              onChange={radio.onChange}
-              title={radio.title}
-              horizontal={radio.horizontal}
-              updateInfo={radio.updateInfo}
-              radioInpDetails={radio.radioInpDetails}
-              otherValue={radio.otherValue}
-              index={index}
-              label={radio.label}
+        {radioInputs.map((radio, index) => {
+          return (
+            <>
+              <RadioButtonGroup
+                options={radio.options}
+                selectedOption={radio.selectedOption}
+                onChange={radio.onChange}
+                title={radio.title}
+                horizontal={radio.horizontal}
+                updateInfo={radio.updateInfo}
+                radioInpDetails={radio.radioInpDetails}
+                otherValue={radio.otherValue}
+                index={index}
+                label={radio.label}
+              />
+            </>
+          );
+        })}
+
+        {inputNames.map((ele) => {
+          return (
+            <>
+              <InputText {...ele} />
+            </>
+          );
+        })}
+
+        {radioInputs2.map((radio, index) => {
+          return (
+            <>
+              <RadioButtonGroup
+                options={radio.options}
+                selectedOption={radio.selectedOption}
+                onChange={radio.onChange}
+                title={radio.title}
+                horizontal={radio.horizontal}
+                updateInfo={radio.updateInfo}
+                radioInpDetails={radio.radioInpDetails}
+                otherValue={radio.otherValue}
+                index={index}
+                label={radio.label}
+              />
+            </>
+          );
+        })}
+
+        <div className="staffInpDetails">
+          <label htmlFor="constitutionMang" className="nameFormHeader">
+            Date of constitution of Management Committee
+          </label>
+          <div className="nameformEle">
+            <DatePicker
+              selected={selectedDate}
+              onChange={handleDateChangeComp}
+              dateFormat="MM/dd/yyyy"
             />
-          </>
-        );
-      })}
-
-      {inputNames.map((ele) => {
-        return (
-          <>
-            <InputText {...ele} />
-          </>
-        );
-      })}
-
-      {radioInputs2.map((radio, index) => {
-        return (
-          <>
-            <RadioButtonGroup
-              options={radio.options}
-              selectedOption={radio.selectedOption}
-              onChange={radio.onChange}
-              title={radio.title}
-              horizontal={radio.horizontal}
-              updateInfo={radio.updateInfo}
-              radioInpDetails={radio.radioInpDetails}
-              otherValue={radio.otherValue}
-              index={index}
-              label={radio.label}
-            />
-          </>
-        );
-      })}
-
-      <div className="staffInpDetails">
-        <label htmlFor="constitutionMang" className="nameFormHeader">
-          Date of constitution of Management Committee
-        </label>
-        <div className="nameformEle">
-          <DatePicker
-            selected={selectedDate}
-            onChange={handleDateChangeComp}
-            dateFormat="MM/dd/yyyy"
-          />
+          </div>
         </div>
-      </div>
 
-      {inputNames2.map((ele) => {
-        return (
-          <>
-            <InputText {...ele} />
-          </>
-        );
-      })}
+        {inputNames2.map((ele) => {
+          return (
+            <>
+              <InputText {...ele} />
+            </>
+          );
+        })}
+        <div className="formDataSub my-4">
+          <button type="submit" >{saveBtn}</button>
+        </div>
+      </form>
     </div>
   );
 }
