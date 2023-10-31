@@ -10,11 +10,14 @@ import RadioButtonGroup from "../RadioBtn Text/checkbox";
 
 export default function Infrastructure({ handleInfraContent }) {
   const [infraInformation, setInfraInformation] = useState({});
+  const [saveBtn, setsaveBtn] = useState("Save Data")
+
 
   const updateInfraDetails = (value, name) => {
     const oldInfo = JSON.parse(JSON.stringify(infraInformation));
     oldInfo[name] = value;
     setInfraInformation(oldInfo);
+    setsaveBtn("Save Data")
   };
 
   const dateNames = [
@@ -815,6 +818,7 @@ export default function Infrastructure({ handleInfraContent }) {
 
   const handleLocalSubmit = (e) => {
     e.preventDefault()
+    setsaveBtn("Data Saved")
   }
 
   return (
@@ -936,7 +940,7 @@ export default function Infrastructure({ handleInfraContent }) {
         })}
         <div className="formDataSub my-4">
 
-          <button type="submit">Save Data</button>
+          <button type="submit" >{saveBtn}</button>
         </div>
       </form>
     </div>

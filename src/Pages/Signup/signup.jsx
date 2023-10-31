@@ -50,7 +50,6 @@ function Signup() {
       const response = await axios.post(
         "https://inforeposerver.onrender.com/signup",
         userDetails,
-        { withCredentials: true }
       );
       console.log(response);
       if (response.status === 201) {

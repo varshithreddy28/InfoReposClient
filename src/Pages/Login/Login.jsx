@@ -39,7 +39,6 @@ function Signup() {
         "https://inforeposerver.onrender.com/login",
         // "http://localhost:3000/login",
         { ...userDetails },
-        { withCredentials: true }
       );
       console.log(response);
       if (response.status === 201) {

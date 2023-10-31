@@ -372,17 +372,15 @@ function FirstForm({ handleFormSuccess }) {
           url: "https://inforeposerver.onrender.com/addformOne",
           // url: "http://localhost:3000/addformOne",
           data: data,
-          withCredentials: true,
           headers: {
             authorization: tokenCookie,
             "Content-Type": "application/json",
           },
-
         });
         setSubmiting(false);
         if (response.status === 200) {
           console.log("Submitted the Form");
-          // navigate("thankyou");
+          navigate("thankyou");
         } else setformErr(response.data.message);
       } catch (error) {
         setShow(true);

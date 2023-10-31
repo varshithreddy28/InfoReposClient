@@ -170,7 +170,6 @@ function SecondForm({ handleFormSuccess }) {
           // "http://localhost:3000/addFormTwo",
           { ...data },
           {
-            withCredentials: true,
             headers: {
               authorization: tokenCookie,
               "Content-Type": "application/json",

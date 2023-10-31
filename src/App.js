@@ -58,7 +58,6 @@ function App() {
               // "http://localhost:3000/validate",
               {},
               {
-                withCredentials: true,
                 headers: {
                   authorization: tokenCookie,
                   "Content-Type": "application/json",
@@ -109,6 +108,7 @@ function App() {
 
           <Route path="signup" element={<Signup />} />
           <Route path="login" element={<Login />} />
+          <Route path="firstform/thankyou" element={<ThankYouPage />} />
 
           <Route path="secondform/thankyou" element={<ThankYouPage />} />
         </Routes>
