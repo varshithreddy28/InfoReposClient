@@ -19,7 +19,7 @@ export default function Content() {
 
   const formDetails = [
     {
-      name: "Form for Inspections(Form 46)",
+      name: "Form for Regular Inspections (Form 46)",
       url: "/firstform",
     },
     {
