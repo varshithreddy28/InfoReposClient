@@ -40,7 +40,6 @@ function Signup() {
         // "http://localhost:3000/login",
         { ...userDetails },
       );
-      console.log(response);
       if (response.status === 201) {
         toast.success("Successfully Registred");
         navigate("/");
